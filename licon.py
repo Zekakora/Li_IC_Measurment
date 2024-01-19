@@ -374,8 +374,8 @@ class Ui_MainWindow(object):
 
     def evaluation(self):
             max = 5
-            min = 2
-            ave = 3.5
+            min = 3
+            ave = 4
             self.textBrowser_1.clear()
             result = eval_conbime(max,ave, min)
             self.textBrowser_1.append(result)
