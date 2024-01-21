@@ -1,0 +1,3 @@
+用于IC曲线预测板块的代码，ic_getin为数据加载板块的数据，ic_model为模型选择和模型参数选择部分的代码
+ic_model包括模型训练model_train,模型评估model_test，模型预测model_predict三小块功能
+整个IC预测板块的代码为这两部分
