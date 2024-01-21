@@ -29,26 +29,38 @@
      </font>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="0">
-      <widget class="QGraphicsView" name="graphicsView">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="font">
         <font>
          <family>微软雅黑</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QGraphicsView" name="graphicsView_2">
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-        </font>
+       <property name="text">
+        <string>111</string>
+       </property>
+       <property name="margin">
+        <number>2</number>
        </property>
       </widget>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="font">
         <font>
          <family>微软雅黑</family>
@@ -58,15 +70,27 @@
         </font>
        </property>
        <property name="text">
-        <string>输入数据预览</string>
+        <string>111</string>
        </property>
        <property name="margin">
         <number>2</number>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_5">
+     <item row="1" column="0">
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>250</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>微软雅黑</family>
@@ -75,11 +99,35 @@
          <bold>true</bold>
         </font>
        </property>
-       <property name="text">
-        <string>输出数据预览</string>
+       <property name="title">
+        <string>输入数据预览</string>
        </property>
-       <property name="margin">
-        <number>2</number>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QGroupBox" name="groupBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>250</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>输出数据预览</string>
        </property>
       </widget>
      </item>
@@ -939,7 +987,7 @@
       <x>600</x>
       <y>10</y>
       <width>301</width>
-      <height>311</height>
+      <height>313</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_7">
@@ -1271,6 +1319,12 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>主要</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
