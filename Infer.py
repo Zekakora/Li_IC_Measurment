@@ -36,7 +36,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
 
         #第五步：定义MyFigure类的一个实例
-        self.F = MyFigure(width=3, height=2, dpi=100)
+        self.F = MyFigure(width=5, height=4, dpi=100)
         #self.F.plotsin()
         definition.plotcos(self)
         #第六步：在GUI的groupBox中创建一个布局，用于添加MyFigure类的实例（即图形）后其他部件。
@@ -57,15 +57,13 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
         # 如果用户选择了文件夹，则更新 QLabel 中的文本
         if folder_dialog:
-            self.textBrowser.clear()
-            self.filepath_2.append(folder_dialog)
+            self.filepath_2.setPlainText(folder_dialog)
 
     def choosefile(self):
         fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
         if fname:  # 如果用户选择了文件
-            self.textBrowser.clear()
             fname = str(fname)
-            self.filepath_1.append(fname)
+            self.filepath_1.setPlainText(fname)
 
     def plotcos(self):
         t = np.arange(0.0, 5.0, 0.01)

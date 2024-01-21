@@ -129,6 +129,12 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <family>微软雅黑</family>
@@ -175,22 +181,6 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="0" colspan="2">
-         <widget class="QTextBrowser" name="filepath_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="0">
          <widget class="QPushButton" name="pushButton">
           <property name="sizePolicy">
@@ -202,7 +192,7 @@
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="font">
@@ -229,27 +219,11 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
            <string>...</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0" colspan="2">
-         <widget class="QTextBrowser" name="filepath_1">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
           </property>
          </widget>
         </item>
@@ -264,7 +238,7 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
@@ -299,6 +273,41 @@
           </property>
           <property name="margin">
            <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="2">
+         <widget class="QPlainTextEdit" name="filepath_1">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="QPlainTextEdit" name="filepath_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="plainText">
+           <string/>
           </property>
          </widget>
         </item>
@@ -363,6 +372,12 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <family>Segoe UI</family>
@@ -383,6 +398,12 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
           </property>
           <property name="font">
            <font>
@@ -416,54 +437,6 @@
           </item>
          </widget>
         </item>
-        <item row="4" column="0" colspan="3">
-         <widget class="QTextBrowser" name="filepath_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0" colspan="3">
-         <widget class="QTextBrowser" name="filepath_4">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0" colspan="3">
-         <widget class="QTextBrowser" name="filepath_5">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="3">
          <widget class="QPushButton" name="filebutton_3">
           <property name="sizePolicy">
@@ -475,7 +448,7 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
@@ -494,7 +467,7 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
@@ -513,7 +486,7 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
@@ -608,6 +581,54 @@
           </property>
          </widget>
         </item>
+        <item row="4" column="0" colspan="3">
+         <widget class="QPlainTextEdit" name="filepath_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="3">
+         <widget class="QPlainTextEdit" name="filepath_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="3">
+         <widget class="QPlainTextEdit" name="filepath_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -659,7 +680,7 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
@@ -678,7 +699,7 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
@@ -721,7 +742,7 @@
           <property name="maximumSize">
            <size>
             <width>45</width>
-            <height>16777215</height>
+            <height>30</height>
            </size>
           </property>
           <property name="text">
@@ -863,54 +884,6 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0" colspan="3">
-         <widget class="QTextBrowser" name="filepath_6">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0" colspan="3">
-         <widget class="QTextBrowser" name="filepath_7">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0" colspan="3">
-         <widget class="QTextBrowser" name="filepath_8">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>35</height>
-           </size>
-          </property>
-         </widget>
-        </item>
         <item row="7" column="0" colspan="4">
          <widget class="QLabel" name="label_18">
           <property name="sizePolicy">
@@ -995,6 +968,54 @@
           </property>
           <property name="margin">
            <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="3">
+         <widget class="QPlainTextEdit" name="filepath_6">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" colspan="3">
+         <widget class="QPlainTextEdit" name="filepath_7">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" colspan="3">
+         <widget class="QPlainTextEdit" name="filepath_8">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -1189,8 +1210,8 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QTextBrowser" name="textBrowser_3">
+        <item row="3" column="1">
+         <widget class="QPlainTextEdit" name="plainTextEdit_4">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1206,7 +1227,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QTextBrowser" name="textBrowser">
+         <widget class="QPlainTextEdit" name="plainTextEdit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1221,8 +1242,8 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QTextBrowser" name="textBrowser_4">
+        <item row="2" column="1">
+         <widget class="QPlainTextEdit" name="plainTextEdit_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1403,56 +1424,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>choosefile()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>383</x>
-     <y>97</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>594</x>
-     <y>61</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>filebutton_1</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>selectpath()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>575</x>
-     <y>177</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>580</x>
-     <y>125</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>filebutton_2</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>selectpath()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>564</x>
-     <y>273</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>558</x>
-     <y>231</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>choosefile()</slot>
   <slot>selectpath()</slot>
