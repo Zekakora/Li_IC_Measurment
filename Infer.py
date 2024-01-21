@@ -36,7 +36,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
 
         #第五步：定义MyFigure类的一个实例
-        self.F = MyFigure(width=5, height=4, dpi=100)
+        self.F = MyFigure(width=8, height=4, dpi=100)
         #self.F.plotsin()
         definition.plotcos(self)
         #第六步：在GUI的groupBox中创建一个布局，用于添加MyFigure类的实例（即图形）后其他部件。
@@ -72,7 +72,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         self.F.fig.suptitle("cos")
 
     def plotother(self):
-        F1 = MyFigure(width=5, height=4, dpi=100)
+        F1 = MyFigure(width=6, height=4, dpi=100)
         x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         y = [23, 21, 32, 13, 3, 132, 13, 3, 1]
         F1.axes.plot(x, y)
