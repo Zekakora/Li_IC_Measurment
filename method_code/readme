@@ -1,1 +1,2 @@
 IC模块部分已经完成
+SOH模块已完成（其中soh_model调用了一些ic_model的函数）
