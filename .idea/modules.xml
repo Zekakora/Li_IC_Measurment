@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Licon.iml" filepath="$PROJECT_DIR$/.idea/Licon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Licon_performance.iml" filepath="$PROJECT_DIR$/.idea/Licon_performance.iml" />
     </modules>
   </component>
 </project>
