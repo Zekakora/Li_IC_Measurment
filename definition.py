@@ -46,6 +46,13 @@ def selectpath(self):
     # 将绘制好的图像设置为中心 Widget
     self.setCentralWidget(cavans)
 
+def plotcos(self):
+    t = np.arange(0.0, 5.0, 0.01)
+    s = np.cos(2 * np.pi * t)
+    self.F.axes.plot(t, s)
+    self.F.fig.suptitle("cos")
+
+
 from licon import Ui_MainWindow
 
 if __name__ == "__main__":
@@ -57,13 +64,4 @@ if __name__ == "__main__":
     MainWindow.show()
     sys.exit(app.exec_())
 
-
-import numpy as np
-
-
-def plotcos(self):
-    t = np.arange(0.0, 5.0, 0.01)
-    s = np.cos(2 * np.pi * t)
-    self.F.axes.plot(t, s)
-    self.F.fig.suptitle("cos")
 
