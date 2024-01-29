@@ -88,7 +88,7 @@ def ic_getin (data_formate,v_path,ic_path):
         plt.title('IC data preview')
         plt.xlabel('Point index')
         plt.ylabel('Incremental Capacity (Ah/V)')
-        plt.show()
+        # plt.show()
         # 判断老化机制,使用一个输出框判断
         peak_data = ic_data.iloc[0,:]
         peaks, _ = find_peaks(abs(peak_data), height=-6 * 3600, threshold=0.1 * 3600)
@@ -144,6 +144,3 @@ def ic_getin_predict (data_formate,v_path):
         plt.ylabel('Voltage (V)')
         plt.show()
     return v_data
-
-
-

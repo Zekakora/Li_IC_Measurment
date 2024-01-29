@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1252</width>
-    <height>705</height>
+    <width>1425</width>
+    <height>673</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,4,4,7">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="6,4,4,7">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <property name="spacing">
@@ -44,6 +44,7 @@
          <font>
           <family>微软雅黑</family>
           <pointsize>11</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -70,6 +71,7 @@
          <font>
           <family>微软雅黑</family>
           <pointsize>11</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -81,7 +83,7 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,0,2">
       <item>
        <layout class="QGridLayout" name="gridLayout_3">
         <property name="leftMargin">
@@ -107,6 +109,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -166,6 +169,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -260,6 +264,7 @@
            <font>
             <family>微软雅黑</family>
             <pointsize>11</pointsize>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -347,6 +352,7 @@
            <font>
             <family>微软雅黑</family>
             <pointsize>11</pointsize>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -505,6 +511,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -533,6 +540,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -561,6 +569,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -625,7 +634,7 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="5,2,9">
       <item>
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="1" column="1">
@@ -702,6 +711,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -847,6 +857,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -940,6 +951,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -969,6 +981,7 @@
            <font>
             <family>微软雅黑</family>
             <pointsize>11</pointsize>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1080,6 +1093,7 @@
            <font>
             <family>微软雅黑</family>
             <pointsize>11</pointsize>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1112,7 +1126,7 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
+     <layout class="QVBoxLayout" name="verticalLayout_4" stretch="10,10,10,0">
       <item>
        <widget class="QLabel" name="label_6">
         <property name="sizePolicy">
@@ -1131,6 +1145,7 @@
          <font>
           <family>微软雅黑</family>
           <pointsize>11</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -1164,6 +1179,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1192,6 +1208,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1220,6 +1237,7 @@
           <property name="font">
            <font>
             <family>微软雅黑</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1366,6 +1384,7 @@
            <font>
             <family>微软雅黑</family>
             <pointsize>11</pointsize>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1395,6 +1414,7 @@
            <font>
             <family>微软雅黑</family>
             <pointsize>11</pointsize>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1417,8 +1437,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1252</width>
-     <height>22</height>
+     <width>1425</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
