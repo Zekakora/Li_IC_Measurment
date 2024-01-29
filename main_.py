@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import *
 import sys
-from licon import Ui_MainWindow
+from licon_milti import Ui_MainWindow
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -14,6 +14,37 @@ from matplotlib.figure import Figure
 import definition
 import ic_getin
 import ic_getii
+
+#需要更改的
+"""
+加载UI里面 23嗲用函数错了
+
+        self.action_1 = QtWidgets.QAction(self.statusbar)
+        self.action_1.setObjectName('action_1')
+        self.menubar.addAction(self.action_1)
+        self.action_1.triggered.connect(self.gotoic)
+
+        self.action_2 = QtWidgets.QAction(self.statusbar)
+        self.action_2.setObjectName('action_2')
+        self.menubar.addAction(self.action_2)
+        self.action_2.triggered.connect(self.gotoold)
+
+        self.action_3 = QtWidgets.QAction(self.statusbar)
+        self.action_3.setObjectName('action_3')
+        self.menubar.addAction(self.action_3)
+        self.action_3.triggered.connect(self.gotosoh)
+
+        
+
+加载translation里面 要把原来的菜单注释掉
+        # self.menu_1.setTitle(_translate("MainWindow", "IC曲线"))
+        # self.menu_3.setTitle(_translate("MainWindow", "电池老化分析"))
+        # self.menu_2.setTitle(_translate("MainWindow", "SOH曲线"))
+        self.action_1.setText(_translate("MainWindow", "IC分析"))
+        self.action_2.setText(_translate("MainWindow", "SOH分析"))
+        self.action_3.setText(_translate("MainWindow", "电池老化分析"))
+"""
+
 
 
 class MyFigure(FigureCanvas):
@@ -189,6 +220,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # print(v_data, ic_data, output_size, degration)
         else:
             print("Wrong file found")
+
 
 
 if __name__ == "__main__":
