@@ -11,11 +11,12 @@ matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-import definition
-import ic_getin
-import ic_getii
+import ic_model
+# import definition
+# import ic_getin
+# import ic_getii
 
-#需要更改的
+# 需要更改的
 """
 加载UI里面 23嗲用函数错了
 
@@ -73,7 +74,6 @@ self.menu_1 = QtWidgets.QMenu(self.menubar)
 """
 
 
-
 class MyFigure(FigureCanvas):
     def __init__(self, width=5, height=4, dpi=100):
         self.fig = Figure(figsize=(width, height), dpi=dpi)
@@ -87,24 +87,36 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.F = MyFigure(width=8, height=4, dpi=100)
 
-        #选项框内容定义区
-        self.data_format = self.comboBox.currentText()
+        # 选项框内容定义区
+        # self.data_format = self.comboBox.currentText()
         self.v_path = None
         self.ic_path = None
         self.degration = None
+        self.output_size = None
 
+        self.window_size = None
+        self.epoch_num = None
+        self.batch_size = None
+        self.train_ratio = None
+        self.model_select = self.comboBox.currentText()
+        self.best_model_path = None
+        self.best_model_name = None
+        self.parameter_path = None
 
-        self.filebutton_2.clicked.connect(self.choosefile_2)
-        self.filebutton_1.clicked.connect(self.choosefile_1)
-        self.filebutton_3.clicked.connect(self.choosefile_3)
-        self.filebutton_4.clicked.connect(self.choosefile_4)
-        self.filebutton_5.clicked.connect(self.choosefile_5)
-        self.filebutton_6.clicked.connect(self.choosefile_6)
-        self.filebutton_7.clicked.connect(self.choosefile_7)
-        self.filebutton_8.clicked.connect(self.choosefile_8)
+        # 文件获取按钮
+        self.filebutton_1.clicked.connect(lambda: self.choosefile(1))
+        self.filebutton_2.clicked.connect(lambda: self.choosefile(2))
+        self.filebutton_3.clicked.connect(lambda: self.choosefile(3))
+        self.filebutton_4.clicked.connect(lambda: self.choosefile(4))
+        self.filebutton_5.clicked.connect(lambda: self.choosefile(5))
+        self.filebutton_6.clicked.connect(lambda: self.choosefile(6))
+        self.filebutton_7.clicked.connect(lambda: self.choosefile(7))
+        self.filebutton_8.clicked.connect(lambda: self.choosefile(8))
 
+        # 输入数据展示按钮
         self.pushButton.clicked.connect(self.ic_getin_ref)
 
+        # 输入数据绘图
         self.gridlayout_inup = QGridLayout(self.groupBox_2)
         self.gridlayout_indown = QGridLayout(self.groupBox)
 
@@ -118,71 +130,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.gridlayout_inup.addWidget(self.canvas)
         # 将 FigureCanvas 添加到第二个 Group Box 的布局中
         self.gridlayout_indown.addWidget(self.canvas_1)
-
         self.pushButton.clicked.connect(self.ic_getin_ref)
 
+        # loss图绘制
+        self.icloss = plt.figure()
+        self.canva_loss = FigureCanvas(self.icloss)
+        self.gridlayout_inup.addWidget(self.groupBox_4)
+        # self.pushButton.clicked.connect(self.draw_loss)
 
-    def choosefile_1(self):
+        # 模型训练窗口
+        self.pushButton_3.clicked.connect(self.train_model)
+
+    def choosefile(self, index):
         fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
         if fname:  # 如果用户选择了文件
             fname = str(fname)
-            self.filepath_1.setPlainText(fname)
-            self.v_path = fname
-
-    def choosefile_2(self):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
-        if fname:  # 如果用户选择了文件
-            fname = str(fname)
-            self.filepath_2.setPlainText(fname)
-            self.ic_path = fname
-
-    def choosefile_3(self):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
-        if fname:  # 如果用户选择了文件
-            fname = str(fname)
-            self.filepath_3.setPlainText(fname)
-            self.ic_path = fname
-
-    def choosefile_4(self):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
-        if fname:  # 如果用户选择了文件
-            fname = str(fname)
-            self.filepath_4.setPlainText(fname)
-            self.ic_path = fname
-
-    def choosefile_5(self):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
-        if fname:  # 如果用户选择了文件
-            fname = str(fname)
-            self.filepath_5.setPlainText(fname)
-            self.ic_path = fname
-
-    def choosefile_6(self):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
-        if fname:  # 如果用户选择了文件
-            fname = str(fname)
-            self.filepath_6.setPlainText(fname)
-            self.ic_path = fname
-
-    def choosefile_7(self):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
-        if fname:  # 如果用户选择了文件
-            fname = str(fname)
-            self.filepath_7.setPlainText(fname)
-            self.ic_path = fname
-
-    def choosefile_8(self):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
-        if fname:  # 如果用户选择了文件
-            fname = str(fname)
-            self.filepath_8.setPlainText(fname)
-            self.ic_path = fname
+            getattr(self, f"filepath_{index}").setPlainText(fname)
+            setattr(self, f"ic_path_{index}", fname)
 
     def ic_getin(self):
         data_format = self.data_format
         ic_path = str(self.ic_path)
         v_path = str(self.v_path)
-
+        output_size = None
         Fup = MyFigure(width=6, height=4, dpi=100)
         Fdown = MyFigure(width=6, height=4, dpi=100)
         # 包含两个数据的预览图
@@ -248,7 +218,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             cycle_num = len(v_data)
             plot_cycle = range(0, cycle_num, int(cycle_num / 10))
 
-
             ##input_figure,Q_V的图像
             ax = self.icinup.add_subplot(111)
             for cycle in plot_cycle:
@@ -290,11 +259,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 degration = '锂库存和活性物质损失'
             self.lifeend.setText(degration)
 
+        self.output_size = output_size
+        print(self.output_size)
 
         return
         # return v_data, ic_data, output_size, degration
 
+    # 检查并获取ic文件
     def ic_getin_ref(self):
+        self.v_path = self.filepath_1.toPlainText()
+        self.ic_path = self.filepath_2.toPlainText()
+        self.data_format = self.comboBox.currentText()
         if self.v_path and self.ic_path and self.data_format:
             self.ic_getin()
             # v_data, ic_data, output_size, degration = self.ic_getin()
@@ -302,6 +277,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             print("Wrong file found")
 
+    def train_model(self):
+        self.v_path = self.filepath_1.toPlainText()
+        self.ic_path = self.filepath_2.toPlainText()
+        self.data_format = self.comboBox.currentText()
+        self.model_set = self.comboBox_2.currentText()
+        self.window_size = self.plainTextEdit_9.toPlainText()
+        self.epoch_num = self.plainTextEdit_10.toPlainText()
+        self.batch_size = self.plainTextEdit_11.toPlainText()
+        self.train_ratio = self.plainTextEdit_12.toPlainText()
+        self.best_model_path = self.filepath_3.toPlainText()
+        self.best_model_name = self.filepath_5.toPlainText()
+        self.parameter_path = self.filepath_4.toPlainText()
+        variables = [
+            self.v_path,
+            self.ic_path,
+            self.data_format,
+            self.window_size,
+            self.epoch_num,
+            self.batch_size,
+            self.train_ratio,
+            self.best_model_path,
+            self.best_model_name,
+            self.parameter_path
+        ]
+        all_variables_non_empty = all(variable for variable in variables)
+        if all_variables_non_empty:
+            print("not null")
+        else:
+            print("null")
+
+    # def draw_loss(self):
+    #     self.loss.setText('')
 
 
 if __name__ == "__main__":

@@ -620,27 +620,36 @@ def model_predict(test_model_path, test_parameter_path, data_formate, v_data,out
 '''
 # #模型训练操作流程
 '''
-#先是数据加载板块
-data_formate='excel'#用户选择的数据格式
-# v_path='D:/Desktop/deal_data/6C-60per_3C/CH29/v.xlsx'#这个是Q_V数据路径
-# ic_path='D:/Desktop/deal_data/6C-60per_3C/CH29/ic.xlsx'#这个是IC数据路径
-v_data,ic_data,num_classes,degration=ic_getin(data_formate,v_path,ic_path)#这是数据加载部分的结果
-#degration需要一个小输出框表示（名字是老化机制)
-print(degration)
-#然后才是模型选择和模型参数设置的变量
-model_select='ResNet'   #ResNet,LSTM,RNN,GRU,or CNN
-best_model_path='./'  #最优模型保存路径
-best_model_name='best_model' #最优模型名称
-parameter_path='./'   #超参数保存路径
-window_size=30        #窗口大小
-epoch_num= 220       #训练轮数
-batch_size=512         #批次大小
-train_ratio=0.7       #训练集比例
-#点击模型训练按钮后进行操作
-model_train(model_select=model_select,best_model_path=best_model_path, best_model_name=best_model_name,
-            parameter_path=parameter_path,window_size=window_size,epoch_num=epoch_num,batch_size=batch_size,
-            train_ratio=train_ratio,data_formate=data_formate,v_data=v_data,ic_data=ic_data,num_classes=num_classes)
-
+# #先是数据加载板块
+# data_formate='excel'#用户选择的数据格式
+# # v_path='D:/Desktop/deal_data/6C-60per_3C/CH29/v.xlsx'#这个是Q_V数据路径
+# # ic_path='D:/Desktop/deal_data/6C-60per_3C/CH29/ic.xlsx'#这个是IC数据路径
+# v_data,ic_data,num_classes,degration=ic_getin(data_formate,v_path,ic_path)#这是数据加载部分的结果
+# #degration需要一个小输出框表示（名字是老化机制)
+# print(degration)
+# #然后才是模型选择和模型参数设置的变量
+# model_select='ResNet'   #ResNet,LSTM,RNN,GRU,or CNN
+# best_model_path='./'  #最优模型保存路径
+# best_model_name='best_model' #最优模型名称
+# parameter_path='./'   #超参数保存路径
+# window_size=30        #窗口大小
+# epoch_num= 220       #训练轮数
+# batch_size=512         #批次大小
+# train_ratio=0.7       #训练集比例
+# #点击模型训练按钮后进行操作
+# model_train(model_select=model_select,best_model_path=best_model_path, best_model_name=best_model_name,
+#             parameter_path=parameter_path,window_size=window_size,epoch_num=epoch_num,batch_size=batch_size,
+#             train_ratio=train_ratio,data_formate=data_formate,v_data=v_data,ic_data=ic_data,num_classes=num_classes)
+def train_model_wrapper(model_select, best_model_path, best_model_name, parameter_path,
+                        window_size, epoch_num, batch_size, train_ratio, data_formate,
+                        v_data, ic_data, num_classes):
+    # 在这里可以进行一些预处理或其他操作
+    # 调用 model_train 函数
+    model_train(model_select=model_select, best_model_path=best_model_path,
+                best_model_name=best_model_name, parameter_path=parameter_path,
+                window_size=window_size, epoch_num=epoch_num, batch_size=batch_size,
+                train_ratio=train_ratio, data_formate=data_formate, v_data=v_data,
+                ic_data=ic_data, num_classes=num_classes)
 '''
     模型测试部分,衡量模型性能
 '''
@@ -659,19 +668,25 @@ model_train(model_select=model_select,best_model_path=best_model_path, best_mode
 # model_test(test_model_path=test_model_path, test_parameter_path=test_parameter_path, data_formate=data_formate,
 #             v_data=v_data, ic_data=ic_data )
 
+def test_model_wrapper(test_model_path, test_parameter_path, data_formate, v_data, ic_data):
+    model_test(test_model_path=test_model_path, test_parameter_path=test_parameter_path,
+               data_formate=data_formate, v_data=v_data, ic_data=ic_data)
 
 '''
     模型预测部分,预测未知数据
 '''
-#数据导入
-data_formate='excel'
-v_path='D:/Desktop/电气电子/method_code/6C-60per_3C/CH30/v.xlsx'#这个是Q_V数据路径
-v_data = ic_getin_predict(data_formate, v_path)
-#然后是模型预测需要导入的模型和参数路径还有保存预测数据的地址
-test_model_path='./best_model.pth'
-test_parameter_path='./best_model_parameter.txt'
-output_path='./'#这个是预测结果保存路径
-#点击模型预测按钮执行以下
-model_predict(test_model_path=test_model_path, test_parameter_path=test_parameter_path, data_formate=data_formate,
-              v_data=v_data,output_path=output_path)
+# #数据导入
+# data_formate='excel'
+# v_path='D:/Desktop/电气电子/method_code/6C-60per_3C/CH30/v.xlsx'#这个是Q_V数据路径
+# v_data = ic_getin_predict(data_formate, v_path)
+# #然后是模型预测需要导入的模型和参数路径还有保存预测数据的地址
+# test_model_path='./best_model.pth'
+# test_parameter_path='./best_model_parameter.txt'
+# output_path='./'#这个是预测结果保存路径
+# #点击模型预测按钮执行以下
+# model_predict(test_model_path=test_model_path, test_parameter_path=test_parameter_path, data_formate=data_formate,
+#               v_data=v_data,output_path=output_path)
 
+def predict_model_wrapper(test_model_path, test_parameter_path, data_formate, v_data, output_path):
+    model_predict(test_model_path=test_model_path, test_parameter_path=test_parameter_path,
+                  data_formate=data_formate, v_data=v_data, output_path=output_path)
