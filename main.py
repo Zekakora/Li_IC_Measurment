@@ -146,25 +146,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # 模型训练窗口
         self.pushButton_3.clicked.connect(self.train_model)
+        # self.status_label.setText("已成功启动窗口")
+
 
     def choosefile_old(self, index):
-        fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
+        fname, _ = QFileDialog.getOpenFileName(None, '选择文件')
         if fname:  # 如果用户选择了文件
             fname = str(fname)
             getattr(self, f"filepath_{index}").setPlainText(fname)
             setattr(self, f"ic_path_{index}", fname)
+            self.status_label.setText("已选择文件{}".format(index))
 
     def choosefile(self, index):
-        fname = QFileDialog.getExistingDirectory(None, '选择文件', '/home')
+        fname = QFileDialog.getExistingDirectory(None, '选择路径')
         if fname:  # 如果用户选择了文件
             fname = str(fname)
             getattr(self, f"filepath_{index}").setPlainText(fname)
             setattr(self, f"ic_path_{index}", fname)
+            self.status_label.setText("已选择路径{}".format(index))
 
     def ic_getin(self):
         data_format = self.data_format
         ic_path = str(self.ic_path)
         v_path = str(self.v_path)
+        self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
         output_size = None
         Fup = MyFigure(width=6, height=4, dpi=100)
         Fdown = MyFigure(width=6, height=4, dpi=100)
@@ -271,7 +276,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             elif peaks_num == 2:
                 degration = '锂库存和活性物质损失'
 
-        self.lifeend.setText(degration)
+        self.oldtype.setText(degration)
         self.v_data = v_data
         self.ic_data = ic_data
         self.degration = degration
@@ -287,12 +292,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.v_path = self.filepath_1.toPlainText()
         self.ic_path = self.filepath_2.toPlainText()
         self.data_format = self.comboBox.currentText()
+        self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
         if self.v_path and self.ic_path and self.data_format:
             self.ic_getin()
+            self.status_label.setText("已成功加载数据".format(self.data_format))
             # v_data, ic_data, output_size, degration = self.ic_getin()
             # print(v_data, ic_data, output_size, degration)
         else:
-            print("Wrong file found")
+            self.status_label.setText("请检查输入的数据")
 
     def train_model(self):
         self.v_path = self.filepath_1.toPlainText()
@@ -319,17 +326,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.parameter_path
         ]
         all_variables_non_empty = all(variable for variable in variables)
+        self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
         if all_variables_non_empty:
-            print("not null")
+            self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
             self.window_size = int(self.plainTextEdit_9.toPlainText())
             self.epoch_num = int(self.plainTextEdit_10.toPlainText())
             self.batch_size = int(self.plainTextEdit_11.toPlainText())
             self.train_ratio = float(self.plainTextEdit_12.toPlainText())
-            total_loss, total_vaildloss = ic_model.train_model_wrapper(self.model_select, self.best_model_path, self.best_model_name,
-                                         self.parameter_path,
-                                         self.window_size, self.epoch_num, self.batch_size, self.train_ratio,
-                                         self.data_format,
-                                         self.v_data, self.ic_data, self.output_size)
+            total_loss, total_vaildloss = ic_model.train_model_wrapper(self.model_select, self.best_model_path,
+                                                                       self.best_model_name,
+                                                                       self.parameter_path,
+                                                                       self.window_size, self.epoch_num,
+                                                                       self.batch_size, self.train_ratio,
+                                                                       self.data_format,
+                                                                       self.v_data, self.ic_data, self.output_size)
 
             Loss = self.icloss.add_subplot(111)
             Loss.plot(range(1, len(total_loss) + 1), total_loss, 'bo', label='trainloss')
@@ -339,9 +349,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             Loss.set_xlabel('epoch_num')
             Loss.legend()
             self.canvas_loss.draw()
+            self.rename(self.best_model_path, self.best_model_name)
+            self.status_label.setText("模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth".format(self.model_select,self.best_model_path,self.best_model_name))
 
         else:
-            print("null")
+            self.status_label.setText("请检查输入数据")
 
     def test_model(self):
         self.v_path = self.filepath_1.toPlainText()
@@ -375,42 +387,47 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print("null")
 
     def test_model(self):
-        def test_model(self):
-            self.v_path = self.filepath_1.toPlainText()
-            self.ic_path = self.filepath_2.toPlainText()
-            self.data_format = self.comboBox.currentText()
-            self.model_set = self.comboBox_2.currentText()
-            self.window_size = int(self.plainTextEdit_9.toPlainText())
-            self.epoch_num = int(self.plainTextEdit_10.toPlainText())
-            self.batch_size = float(self.plainTextEdit_11.toPlainText())
-            self.train_ratio = float(self.plainTextEdit_12.toPlainText())
-            self.best_model_path = self.filepath_3.toPlainText()
-            self.best_model_name = self.filepath_5.toPlainText()
-            self.parameter_path = self.filepath_4.toPlainText()
-            variables = [
-                self.v_path,
-                self.ic_path,
-                self.data_format,
-                self.window_size,
-                self.epoch_num,
-                self.batch_size,
-                self.train_ratio,
-                self.best_model_path,
-                self.best_model_name,
-                self.parameter_path
-            ]
-            all_variables_non_empty = all(variable for variable in variables)
-            if all_variables_non_empty:
-                print("not null")
-                ic_model.predict_model_wrapper()
-            else:
-                print("null")
+        self.v_path = self.filepath_1.toPlainText()
+        self.ic_path = self.filepath_2.toPlainText()
+        self.data_format = self.comboBox.currentText()
+        self.model_set = self.comboBox_2.currentText()
+        self.window_size = int(self.plainTextEdit_9.toPlainText())
+        self.epoch_num = int(self.plainTextEdit_10.toPlainText())
+        self.batch_size = float(self.plainTextEdit_11.toPlainText())
+        self.train_ratio = float(self.plainTextEdit_12.toPlainText())
+        self.best_model_path = self.filepath_3.toPlainText()
+        self.best_model_name = self.filepath_5.toPlainText()
+        self.parameter_path = self.filepath_4.toPlainText()
+        variables = [
+            self.v_path,
+            self.ic_path,
+            self.data_format,
+            self.window_size,
+            self.epoch_num,
+            self.batch_size,
+            self.train_ratio,
+            self.best_model_path,
+            self.best_model_name,
+            self.parameter_path
+        ]
+        all_variables_non_empty = all(variable for variable in variables)
+        if all_variables_non_empty:
+            ic_model.predict_model_wrapper()
+            self.status_label.setText("已成功训练模型")
+        else:
+            self.status_label.setText("请检查输入的数据")
 
-    def rename(new_name):
+    def rename(self, best_model_path, best_model_name):
         files = [f for f in os.listdir(best_model_path) if f.endswith('.pth')]
-        best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
-        os.rename(best_pth_file, best_model_name + '.pth')
+        if files:
+            best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
+            os.rename(os.path.join(best_model_path, best_pth_file),
+                      os.path.join(best_model_path, best_model_name + '.pth'))
 
+            print("File renamed successfully.")
+        else:
+
+            print("No .pth files found in the directory.")
 
 
 if __name__ == "__main__":
