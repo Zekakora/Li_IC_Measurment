@@ -12,6 +12,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 import ic_model
+
 # import definition
 # import ic_getin
 # import ic_getii
@@ -90,6 +91,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 选项框内容定义区
         # self.data_format = self.comboBox.currentText()
         self.v_path = None
+        self.v_data = None
+        self.ic_data = None
         self.ic_path = None
         self.degration = None
         self.output_size = None
@@ -103,13 +106,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.best_model_name = None
         self.parameter_path = None
 
+        self.total_loss = None
+        self.total_vaildloss = None
+
         # 文件获取按钮
-        self.filebutton_1.clicked.connect(lambda: self.choosefile(1))
-        self.filebutton_2.clicked.connect(lambda: self.choosefile(2))
+        self.filebutton_1.clicked.connect(lambda: self.choosefile_old(1))
+        self.filebutton_2.clicked.connect(lambda: self.choosefile_old(2))
         self.filebutton_3.clicked.connect(lambda: self.choosefile(3))
         self.filebutton_4.clicked.connect(lambda: self.choosefile(4))
         self.filebutton_5.clicked.connect(lambda: self.choosefile(5))
-        self.filebutton_6.clicked.connect(lambda: self.choosefile(6))
+        self.filebutton_6.clicked.connect(lambda: self.choosefile_old(6))
         self.filebutton_7.clicked.connect(lambda: self.choosefile(7))
         self.filebutton_8.clicked.connect(lambda: self.choosefile(8))
 
@@ -133,16 +139,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(self.ic_getin_ref)
 
         # loss图绘制
-        self.icloss = plt.figure()
-        self.canva_loss = FigureCanvas(self.icloss)
-        self.gridlayout_inup.addWidget(self.groupBox_4)
-        # self.pushButton.clicked.connect(self.draw_loss)
+        self.icloss = Figure(figsize=(5, 4), dpi=100)
+        self.canvas_loss = FigureCanvas(self.icloss)
+        self.verticalLayout.addWidget(self.canvas_loss)
 
         # 模型训练窗口
         self.pushButton_3.clicked.connect(self.train_model)
 
-    def choosefile(self, index):
+    def choosefile_old(self, index):
         fname, _ = QFileDialog.getOpenFileName(None, '选择文件', '/home')
+        if fname:  # 如果用户选择了文件
+            fname = str(fname)
+            getattr(self, f"filepath_{index}").setPlainText(fname)
+            setattr(self, f"ic_path_{index}", fname)
+
+    def choosefile(self, index):
+        fname = QFileDialog.getExistingDirectory(None, '选择文件', '/home')
         if fname:  # 如果用户选择了文件
             fname = str(fname)
             getattr(self, f"filepath_{index}").setPlainText(fname)
@@ -257,9 +269,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     degration = '锂库存和活性物质损失'
             elif peaks_num == 2:
                 degration = '锂库存和活性物质损失'
-            self.lifeend.setText(degration)
 
+        self.lifeend.setText(degration)
+        self.v_data = v_data
+        self.ic_data = ic_data
+        self.degration = degration
         self.output_size = output_size
+
         print(self.output_size)
 
         return
@@ -278,6 +294,55 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print("Wrong file found")
 
     def train_model(self):
+        self.v_path = self.filepath_1.toPlainText()
+        self.ic_path = self.filepath_2.toPlainText()
+        self.data_format = self.comboBox.currentText()
+        self.model_select = self.comboBox_2.currentText()
+        self.window_size = self.plainTextEdit_9.toPlainText()
+        self.epoch_num = self.plainTextEdit_10.toPlainText()
+        self.batch_size = self.plainTextEdit_11.toPlainText()
+        self.train_ratio = self.plainTextEdit_12.toPlainText()
+        self.best_model_path = self.filepath_3.toPlainText()
+        self.best_model_name = self.filepath_5.toPlainText()
+        self.parameter_path = self.filepath_4.toPlainText()
+        variables = [
+            self.v_path,
+            self.ic_path,
+            self.data_format,
+            self.window_size,
+            self.epoch_num,
+            self.batch_size,
+            self.train_ratio,
+            self.best_model_path,
+            self.best_model_name,
+            self.parameter_path
+        ]
+        all_variables_non_empty = all(variable for variable in variables)
+        if all_variables_non_empty:
+            print("not null")
+            self.window_size = int(self.plainTextEdit_9.toPlainText())
+            self.epoch_num = int(self.plainTextEdit_10.toPlainText())
+            self.batch_size = int(self.plainTextEdit_11.toPlainText())
+            self.train_ratio = float(self.plainTextEdit_12.toPlainText())
+            total_loss, total_vaildloss = ic_model.train_model_wrapper(self.model_select, self.best_model_path, self.best_model_name,
+                                         self.parameter_path,
+                                         self.window_size, self.epoch_num, self.batch_size, self.train_ratio,
+                                         self.data_format,
+                                         self.v_data, self.ic_data, self.output_size)
+
+            Loss = self.icloss.add_subplot(111)
+            Loss.plot(range(1, len(total_loss) + 1), total_loss, 'bo', label='trainloss')
+            Loss.plot(range(1, len(total_vaildloss) + 1), total_vaildloss, 'r', label='validloss')
+            Loss.set_title('loss_figure')
+            Loss.set_ylabel('loss')
+            Loss.set_xlabel('epoch_num')
+            Loss.legend()
+            self.canvas_loss.draw()
+
+        else:
+            print("null")
+
+    def test_model(self):
         self.v_path = self.filepath_1.toPlainText()
         self.ic_path = self.filepath_2.toPlainText()
         self.data_format = self.comboBox.currentText()
@@ -304,11 +369,44 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         all_variables_non_empty = all(variable for variable in variables)
         if all_variables_non_empty:
             print("not null")
+            ic_model.test_model_wrapper(variables)
         else:
             print("null")
 
-    # def draw_loss(self):
-    #     self.loss.setText('')
+    def test_model(self):
+        def test_model(self):
+            self.v_path = self.filepath_1.toPlainText()
+            self.ic_path = self.filepath_2.toPlainText()
+            self.data_format = self.comboBox.currentText()
+            self.model_set = self.comboBox_2.currentText()
+            self.window_size = int(self.plainTextEdit_9.toPlainText())
+            self.epoch_num = int(self.plainTextEdit_10.toPlainText())
+            self.batch_size = float(self.plainTextEdit_11.toPlainText())
+            self.train_ratio = float(self.plainTextEdit_12.toPlainText())
+            self.best_model_path = self.filepath_3.toPlainText()
+            self.best_model_name = self.filepath_5.toPlainText()
+            self.parameter_path = self.filepath_4.toPlainText()
+            variables = [
+                self.v_path,
+                self.ic_path,
+                self.data_format,
+                self.window_size,
+                self.epoch_num,
+                self.batch_size,
+                self.train_ratio,
+                self.best_model_path,
+                self.best_model_name,
+                self.parameter_path
+            ]
+            all_variables_non_empty = all(variable for variable in variables)
+            if all_variables_non_empty:
+                print("not null")
+                ic_model.predict_model_wrapper()
+            else:
+                print("null")
+
+    def rename(new_name):
+
 
 
 if __name__ == "__main__":

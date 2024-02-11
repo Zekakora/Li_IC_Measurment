@@ -454,9 +454,11 @@ def model_train(model_select,best_model_path, best_model_name,parameter_path,win
                                         epoch_num=epoch_num,batch_size=batch_size,device=device,
                                          train_ratio=train_ratio,num_classes=num_classes)
     #重命名最优模型为用户定义名称
+
     files = [f for f in os.listdir(best_model_path) if f.endswith('.pth')]
     best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
     os.rename(best_pth_file,best_model_name+'.pth')
+
     plt.figure(dpi=150)
     plt.plot(range(1, len(total_loss)+1), total_loss, 'bo', label='trainloss')
     plt.plot(range(1, len(total_validloss)+1), total_validloss, 'r', label='validloss')
