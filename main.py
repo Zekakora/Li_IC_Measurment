@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import *
 import sys
+import os
 from licon_milti import Ui_MainWindow
 import numpy as np
 import pandas as pd
@@ -406,6 +407,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 print("null")
 
     def rename(new_name):
+        files = [f for f in os.listdir(best_model_path) if f.endswith('.pth')]
+        best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
+        os.rename(best_pth_file, best_model_name + '.pth')
 
 
 
