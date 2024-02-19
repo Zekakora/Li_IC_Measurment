@@ -572,10 +572,16 @@ def model_test(test_model_path, test_parameter_path, data_formate, v_data, ic_da
     # 建立一个空字典来存放结果
     results = {}
 
-    results['RMSE'] = 'RMSE: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(RMSE), np.max(RMSE), np.min(RMSE))
-    results['MSE'] = 'MSE: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(MSE), np.max(MSE), np.min(MSE))
-    results['MAE'] = 'MAE: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(MAE), np.max(MAE), np.min(MAE))
-    results['R2'] = 'R2: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(R2), np.min(R2), np.max(R2))
+    results['RMSE'] = 'Average: {:>10.4f}\tWorst: {:>10.4f}\tBest: {:>10.4f}'.format(np.mean(RMSE), np.max(RMSE),
+                                                                                     np.min(RMSE))
+    results['MSE'] = 'Average: {:>10.4f}\tWorst: {:>10.4f}\tBest: {:>10.4f}'.format(np.mean(MSE), np.max(MSE),
+                                                                                    np.min(MSE))
+    results['MAE'] = 'Average: {:>10.4f}\tWorst: {:>10.4f}\tBest: {:>10.4f}'.format(np.mean(MAE), np.max(MAE),
+                                                                                    np.min(MAE))
+    results['R2'] = 'Average: {:>10.4f}\tWorst: {:>10.4f}\tBest: {:>10.4f}'.format(np.mean(R2), np.min(R2), np.max(R2))
+
+    for key, value in results.items():
+        print(value)
 
     return results, MAE, RMSE, num_classes, ground, predict
     # MAE_worst = np.argmax(MAE)

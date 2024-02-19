@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1500</width>
-    <height>712</height>
+    <width>1600</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -27,7 +27,7 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="page">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,3,3,5">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,2,3,6">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <property name="spacing">
@@ -1270,7 +1270,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2,1,10">
+         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,2,0,13">
           <item>
            <widget class="QLabel" name="label_6">
             <property name="sizePolicy">
@@ -1451,7 +1451,7 @@
            </spacer>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,5,1,5">
+           <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,6,0,6">
             <item>
              <widget class="QLabel" name="label_11">
               <property name="sizePolicy">
@@ -3032,7 +3032,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1500</width>
+     <width>1600</width>
      <height>23</height>
     </rect>
    </property>

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1500, 712)
+        MainWindow.resize(1600, 800)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -788,20 +788,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.verticalLayout_8.addLayout(self.horizontalLayout_5)
-        self.verticalLayout_8.setStretch(0, 1)
-        self.verticalLayout_8.setStretch(1, 5)
-        self.verticalLayout_8.setStretch(2, 1)
-        self.verticalLayout_8.setStretch(3, 5)
+        self.verticalLayout_8.setStretch(1, 6)
+        self.verticalLayout_8.setStretch(3, 6)
         self.verticalLayout_4.addLayout(self.verticalLayout_8)
-        self.verticalLayout_4.setStretch(0, 1)
         self.verticalLayout_4.setStretch(1, 2)
-        self.verticalLayout_4.setStretch(2, 1)
-        self.verticalLayout_4.setStretch(3, 10)
+        self.verticalLayout_4.setStretch(3, 13)
         self.horizontalLayout.addLayout(self.verticalLayout_4)
         self.horizontalLayout.setStretch(0, 4)
-        self.horizontalLayout.setStretch(1, 3)
+        self.horizontalLayout.setStretch(1, 2)
         self.horizontalLayout.setStretch(2, 3)
-        self.horizontalLayout.setStretch(3, 5)
+        self.horizontalLayout.setStretch(3, 6)
         self.stackedWidget.addWidget(self.page)
         self.page_5 = QtWidgets.QWidget()
         self.page_5.setObjectName("page_5")
@@ -1559,7 +1555,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1500, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1600, 23))
         self.menubar.setObjectName("menubar")
         self.menu_1 = QtWidgets.QMenu(self.menubar)
         self.menu_1.setObjectName("menu_1")
@@ -1605,10 +1601,6 @@ class Ui_MainWindow(object):
         # self.status_label.setAlignment(Qt.AlignCenter)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        # self.retranslateUi(MainWindow)
-        # self.stackedWidget.setCurrentIndex(0)
-        # QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

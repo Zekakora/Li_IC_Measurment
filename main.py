@@ -147,7 +147,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.verticalLayout.addWidget(self.canvas_loss)
 
         # MAE
-        self.mae_rmse = Figure(figsize=(5, 4), dpi=100)
+        self.mae_rmse = Figure(figsize=(2, 1.5), dpi=70)
         self.canva_mae_best = FigureCanvas(self.mae_rmse)
         self.canva_mae_worst = FigureCanvas(self.mae_rmse)
         self.horizontalLayout_3.addWidget(self.canva_mae_best)
@@ -384,8 +384,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.param_import_path,
             self.model_import_path
         ]
-        all_variables_non_empty = all(not variable.empty if isinstance(variable, pd.DataFrame) else variable for variable in variables)
-        if all_variables_non_empty:
+
+        if all(self.v_path and self.ic_path and self.model_import_path and self.param_import_path and not variable.empty for variable in [self.v_data, self.ic_data]):
             self.status_label.setText("开始预测")
             results, MAE, RMSE, num_classes,ground, predict = ic_model.test_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, self.v_data, self.ic_data)
 
@@ -400,22 +400,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             mae_worst.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
             mae_worst.plot(v_index, predict[MAE_worst, :], 'r', label='pred')
-            mae_worst.set_title('MAE_worst_predict')
+            # mae_worst.set_title('MAE_worst',fontsize=10)
             mae_worst.set_ylabel('Incremental Capacity(Ah/V)')
             mae_worst.set_xlabel('voltage (V)')
             mae_worst.legend()
+            # self.mae_rmse.subplots_adjust(left=0.3, right=0.4, top=0.2, bottom=0.1)
             self.canva_mae_worst.draw()
+            # mae_worst.cla()
+
 
 
             # MAE_best
             mae_best = self.mae_rmse.add_subplot(111)
             mae_best.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
             mae_best.plot(v_index, predict[MAE_best, :], 'r', label='pred')
-            mae_best.set_title('MAE_best_predict')
+            # mae_best.set_title('MAE_best',fontsize=10)
             mae_best.set_ylabel('Incremental Capacity(Ah/V)')
             mae_best.set_xlabel('voltage (V)')
             mae_best.legend()
             self.canva_mae_best.draw()
+            # mae_best.cla()
  
  
             # RMSE_figure
@@ -427,21 +431,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             rmse_worst = self.mae_rmse.add_subplot(111)
             rmse_worst.plot(v_index, ground[RMSE_worst, :], 'bo', label='ground')
             rmse_worst.plot(v_index, predict[RMSE_worst, :], 'r', label='pred')
-            rmse_worst.set_title('RMSE_worst_predict')
+            # rmse_worst.set_title('RMSE_worst',fontsize=10)
             rmse_worst.set_ylabel('Incremental Capacity(Ah/V)')
             rmse_worst.set_xlabel('voltage (V)')
             rmse_worst.legend()
             self.canva_rmse_worst.draw()
+            # rmse_worst.cla()
 
             # RMSE_best
             rmse_best = self.mae_rmse.add_subplot(111)
             rmse_best.plot(v_index, ground[RMSE_best, :], 'bo', label='ground')
             rmse_best.plot(v_index, predict[RMSE_best, :], 'r', label='pred')
-            rmse_best.set_title('RMSE_best_predict')
+            # rmse_best.set_title('RMSE_best',fontsize=10)
             rmse_best.set_ylabel('Incremental Capacity(Ah/V)')
             rmse_best.set_xlabel('voltage (V)')
             rmse_best.legend()
             self.canva_rmse_best.draw()
+            # rmse_best.cla()
             self.status_label.setText("绘图完成")
 
             a = str(results.get('RMSE', "null"))
