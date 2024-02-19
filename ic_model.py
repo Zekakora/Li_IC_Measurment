@@ -542,9 +542,9 @@ def model_test(test_model_path, test_parameter_path, data_formate, v_data, ic_da
     with torch.no_grad():
         for cycle in range(len(v_data)):
             # 构造滑动窗口
-            if data_formate == 'txt':
+            if data_formate == 'Txt':
                 input = txt_prepare_test(v_data[cycle], window_size, v_mean, v_std)
-            elif data_formate == 'excel':
+            elif data_formate == 'Excel':
                 v_temp = [value for value in v_data.iloc[cycle, :] if pd.notna(value)]
                 input = excel_prepare_test(v_temp, window_size, v_mean, v_std)
             X = np.reshape(input, (-1, 1, window_size)).astype(np.float32)
@@ -567,56 +567,66 @@ def model_test(test_model_path, test_parameter_path, data_formate, v_data, ic_da
     print('R2: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(R2), np.min(R2), np.max(R2)))
     print('------------------------------------------------------------------')
 
+    # 假设您的结果已经计算完毕并存储在相应的变量中
 
-    MAE_worst = np.argmax(MAE)
-    MAE_best = np.argmin(MAE)
-    v_index = np.linspace(2.01, 3.60, num_classes)
-    # MAE_worst
-    plt.figure(dpi=150)
-    plt.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
-    plt.plot(v_index, predict[MAE_worst, :], 'r', label='pred')
-    plt.title('MAE_worst_predict')
-    plt.ylabel('Incremental Capacity(Ah/V)')
-    plt.xlabel('voltage (V)')
-    plt.legend()
-    plt.show()
-    # plt.clf()
+    # 建立一个空字典来存放结果
+    results = {}
 
-    # MAE_best
-    plt.figure(dpi=150)
-    plt.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
-    plt.plot(v_index, predict[MAE_best, :], 'r', label='pred')
-    plt.title('MAE_best_predict')
-    plt.ylabel('Incremental Capacity(Ah/V)')
-    plt.xlabel('voltage (V)')
-    plt.legend()
-    plt.show()
-    # plt.clf()
-    # RMSE_figure
-    RMSE_worst = np.argmax(RMSE)
-    RMSE_best = np.argmin(RMSE)
-    v_index = np.linspace(2.01, 3.60, num_classes)
-    # RMSE_worst
-    plt.figure(dpi=150)
-    plt.plot(v_index, ground[RMSE_worst, :], 'bo', label='ground')
-    plt.plot(v_index, predict[RMSE_worst, :], 'r', label='pred')
-    plt.title('RMSE_worst_predict')
-    plt.ylabel('Incremental Capacity(Ah/V)')
-    plt.xlabel('voltage (V)')
-    plt.legend()
-    plt.show()
-    # plt.clf()
+    results['RMSE'] = 'RMSE: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(RMSE), np.max(RMSE), np.min(RMSE))
+    results['MSE'] = 'MSE: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(MSE), np.max(MSE), np.min(MSE))
+    results['MAE'] = 'MAE: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(MAE), np.max(MAE), np.min(MAE))
+    results['R2'] = 'R2: average:{:.4f},worst:{:.4f},best:{:.4f}'.format(np.mean(R2), np.min(R2), np.max(R2))
 
-    # RMSE_best
-    plt.figure(dpi=150)
-    plt.plot(v_index, ground[RMSE_best, :], 'bo', label='ground')
-    plt.plot(v_index, predict[RMSE_best, :], 'r', label='pred')
-    plt.title('RMSE_best_predict')
-    plt.ylabel('Incremental Capacity(Ah/V)')
-    plt.xlabel('voltage (V)')
-    plt.legend()
-    plt.show()
-    # plt.clf()
+    return results, MAE, RMSE, num_classes, ground, predict
+    # MAE_worst = np.argmax(MAE)
+    # MAE_best = np.argmin(MAE)
+    # v_index = np.linspace(2.01, 3.60, num_classes)
+    # # MAE_worst
+    # plt.figure(dpi=150)
+    # plt.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
+    # plt.plot(v_index, predict[MAE_worst, :], 'r', label='pred')
+    # plt.title('MAE_worst_predict')
+    # plt.ylabel('Incremental Capacity(Ah/V)')
+    # plt.xlabel('voltage (V)')
+    # plt.legend()
+    # plt.show()
+    # # plt.clf()
+    #
+    # # MAE_best
+    # plt.figure(dpi=150)
+    # plt.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
+    # plt.plot(v_index, predict[MAE_best, :], 'r', label='pred')
+    # plt.title('MAE_best_predict')
+    # plt.ylabel('Incremental Capacity(Ah/V)')
+    # plt.xlabel('voltage (V)')
+    # plt.legend()
+    # plt.show()
+    # # plt.clf()
+    # # RMSE_figure
+    # RMSE_worst = np.argmax(RMSE)
+    # RMSE_best = np.argmin(RMSE)
+    # v_index = np.linspace(2.01, 3.60, num_classes)
+    # # RMSE_worst
+    # plt.figure(dpi=150)
+    # plt.plot(v_index, ground[RMSE_worst, :], 'bo', label='ground')
+    # plt.plot(v_index, predict[RMSE_worst, :], 'r', label='pred')
+    # plt.title('RMSE_worst_predict')
+    # plt.ylabel('Incremental Capacity(Ah/V)')
+    # plt.xlabel('voltage (V)')
+    # plt.legend()
+    # plt.show()
+    # # plt.clf()
+    #
+    # # RMSE_best
+    # plt.figure(dpi=150)
+    # plt.plot(v_index, ground[RMSE_best, :], 'bo', label='ground')
+    # plt.plot(v_index, predict[RMSE_best, :], 'r', label='pred')
+    # plt.title('RMSE_best_predict')
+    # plt.ylabel('Incremental Capacity(Ah/V)')
+    # plt.xlabel('voltage (V)')
+    # plt.legend()
+    # plt.show()
+    # # plt.clf()
 
 
 # 模型预测函数
@@ -728,9 +738,10 @@ def train_model_wrapper(model_select, best_model_path, best_model_name, paramete
 #             v_data=v_data, ic_data=ic_data )
 
 def test_model_wrapper(test_model_path, test_parameter_path, data_formate, v_data, ic_data):
-    model_test(test_model_path=test_model_path, test_parameter_path=test_parameter_path,
+    lables, MAE, RMSE, num_classes, ground, predict =  model_test(test_model_path=test_model_path, test_parameter_path=test_parameter_path,
                data_formate=data_formate, v_data=v_data, ic_data=ic_data)
 
+    return lables, MAE, RMSE, num_classes, ground, predict
 
 '''
     模型预测部分,预测未知数据

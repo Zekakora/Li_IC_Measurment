@@ -938,7 +938,7 @@
                </font>
               </property>
               <property name="text">
-               <string>最优模型命名</string>
+               <string>预测数据存储路径</string>
               </property>
               <property name="margin">
                <number>1</number>
@@ -1270,7 +1270,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="10,10,10,0">
+         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2,1,10">
           <item>
            <widget class="QLabel" name="label_6">
             <property name="sizePolicy">
@@ -1451,72 +1451,8 @@
            </spacer>
           </item>
           <item>
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="1" column="1">
-             <widget class="QGraphicsView" name="graphicsView_5">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>1677215</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QGraphicsView" name="graphicsView_7">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>1677215</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QGraphicsView" name="graphicsView_4">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>1677215</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QGraphicsView" name="graphicsView_6">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>1677215</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" colspan="2">
+           <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,5,1,5">
+            <item>
              <widget class="QLabel" name="label_11">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1539,14 +1475,17 @@
                </font>
               </property>
               <property name="text">
-               <string>MAE指标最优预测结果</string>
+               <string>MAE指标最优最差预测结果</string>
               </property>
               <property name="margin">
                <number>1</number>
               </property>
              </widget>
             </item>
-            <item row="2" column="0" colspan="2">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+            </item>
+            <item>
              <widget class="QLabel" name="label_13">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1569,12 +1508,15 @@
                </font>
               </property>
               <property name="text">
-               <string>RMSE指标最优预测结果</string>
+               <string>RMSE指标最优最差预测结果</string>
               </property>
               <property name="margin">
                <number>1</number>
               </property>
              </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_5"/>
             </item>
            </layout>
           </item>

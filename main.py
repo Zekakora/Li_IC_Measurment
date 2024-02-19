@@ -98,6 +98,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.degration = None
         self.output_size = None
 
+        self.labels = None
+
         self.window_size = None
         self.epoch_num = None
         self.batch_size = None
@@ -117,7 +119,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.filebutton_4.clicked.connect(lambda: self.choosefile(4))
         self.filebutton_5.clicked.connect(lambda: self.choosefile(5))
         self.filebutton_6.clicked.connect(lambda: self.choosefile_old(6))
-        self.filebutton_7.clicked.connect(lambda: self.choosefile(7))
+        self.filebutton_7.clicked.connect(lambda: self.choosefile_old(7))
         self.filebutton_8.clicked.connect(lambda: self.choosefile(8))
 
         # 输入数据展示按钮
@@ -144,10 +146,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.canvas_loss = FigureCanvas(self.icloss)
         self.verticalLayout.addWidget(self.canvas_loss)
 
+        # MAE
+        self.mae_rmse = Figure(figsize=(5, 4), dpi=100)
+        self.canva_mae_best = FigureCanvas(self.mae_rmse)
+        self.canva_mae_worst = FigureCanvas(self.mae_rmse)
+        self.horizontalLayout_3.addWidget(self.canva_mae_best)
+        self.horizontalLayout_3.addWidget(self.canva_mae_worst)
+
+        self.canva_rmse_best = FigureCanvas(self.mae_rmse)
+        self.canva_rmse_worst = FigureCanvas(self.mae_rmse)
+        self.horizontalLayout_5.addWidget(self.canva_rmse_best)
+        self.horizontalLayout_5.addWidget(self.canva_rmse_worst)
         # 模型训练窗口
         self.pushButton_3.clicked.connect(self.train_model)
         # self.status_label.setText("已成功启动窗口")
 
+        #   模型测试
+        self.pushButton_4.clicked.connect(self.test_model)
 
     def choosefile_old(self, index):
         fname, _ = QFileDialog.getOpenFileName(None, '选择文件')
@@ -360,41 +375,89 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ic_path = self.filepath_2.toPlainText()
         self.data_format = self.comboBox.currentText()
         self.model_set = self.comboBox_2.currentText()
-        self.window_size = self.plainTextEdit_9.toPlainText()
-        self.epoch_num = self.plainTextEdit_10.toPlainText()
-        self.batch_size = self.plainTextEdit_11.toPlainText()
-        self.train_ratio = self.plainTextEdit_12.toPlainText()
-        self.best_model_path = self.filepath_3.toPlainText()
-        self.best_model_name = self.filepath_5.toPlainText()
-        self.parameter_path = self.filepath_4.toPlainText()
+        self.model_import_path = self.filepath_6.toPlainText()
+        self.param_import_path = self.filepath_7.toPlainText()
         variables = [
             self.v_path,
             self.ic_path,
             self.data_format,
-            self.window_size,
-            self.epoch_num,
-            self.batch_size,
-            self.train_ratio,
-            self.best_model_path,
-            self.best_model_name,
-            self.parameter_path
+            self.param_import_path,
+            self.model_import_path
         ]
-        all_variables_non_empty = all(variable for variable in variables)
+        all_variables_non_empty = all(not variable.empty if isinstance(variable, pd.DataFrame) else variable for variable in variables)
         if all_variables_non_empty:
-            print("not null")
-            ic_model.test_model_wrapper(variables)
-        else:
-            print("null")
+            self.status_label.setText("开始预测")
+            results, MAE, RMSE, num_classes,ground, predict = ic_model.test_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, self.v_data, self.ic_data)
 
-    def test_model(self):
+            '''绘图区'''
+
+            MAE_worst = np.argmax(MAE)
+            MAE_best = np.argmin(MAE)
+            v_index = np.linspace(2.01, 3.60, num_classes)
+            
+            # MAE_worst
+            mae_worst = self.mae_rmse.add_subplot(111)
+
+            mae_worst.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
+            mae_worst.plot(v_index, predict[MAE_worst, :], 'r', label='pred')
+            mae_worst.set_title('MAE_worst_predict')
+            mae_worst.set_ylabel('Incremental Capacity(Ah/V)')
+            mae_worst.set_xlabel('voltage (V)')
+            mae_worst.legend()
+            self.canva_mae_worst.draw()
+
+
+            # MAE_best
+            mae_best = self.mae_rmse.add_subplot(111)
+            mae_best.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
+            mae_best.plot(v_index, predict[MAE_best, :], 'r', label='pred')
+            mae_best.set_title('MAE_best_predict')
+            mae_best.set_ylabel('Incremental Capacity(Ah/V)')
+            mae_best.set_xlabel('voltage (V)')
+            mae_best.legend()
+            self.canva_mae_best.draw()
+ 
+ 
+            # RMSE_figure
+            RMSE_worst = np.argmax(RMSE)
+            RMSE_best = np.argmin(RMSE)
+            v_index = np.linspace(2.01, 3.60, num_classes)
+            
+            # RMSE_worst
+            rmse_worst = self.mae_rmse.add_subplot(111)
+            rmse_worst.plot(v_index, ground[RMSE_worst, :], 'bo', label='ground')
+            rmse_worst.plot(v_index, predict[RMSE_worst, :], 'r', label='pred')
+            rmse_worst.set_title('RMSE_worst_predict')
+            rmse_worst.set_ylabel('Incremental Capacity(Ah/V)')
+            rmse_worst.set_xlabel('voltage (V)')
+            rmse_worst.legend()
+            self.canva_rmse_worst.draw()
+
+            # RMSE_best
+            rmse_best = self.mae_rmse.add_subplot(111)
+            rmse_best.plot(v_index, ground[RMSE_best, :], 'bo', label='ground')
+            rmse_best.plot(v_index, predict[RMSE_best, :], 'r', label='pred')
+            rmse_best.set_title('RMSE_best_predict')
+            rmse_best.set_ylabel('Incremental Capacity(Ah/V)')
+            rmse_best.set_xlabel('voltage (V)')
+            rmse_best.legend()
+            self.canva_rmse_best.draw()
+            self.status_label.setText("绘图完成")
+
+            a = str(results.get('RMSE', "null"))
+            self.label_RMSE.setText(a)
+            a = str(results.get('MAE', "null"))
+            self.label_MAE.setText(a)
+            a = str(results.get('R2', "null"))
+            self.label_R.setText(a)
+        else:
+            self.status_label.setText("请检查输入数据")
+
+
+    def predict_model(self):
         self.v_path = self.filepath_1.toPlainText()
         self.ic_path = self.filepath_2.toPlainText()
         self.data_format = self.comboBox.currentText()
-        self.model_set = self.comboBox_2.currentText()
-        self.window_size = int(self.plainTextEdit_9.toPlainText())
-        self.epoch_num = int(self.plainTextEdit_10.toPlainText())
-        self.batch_size = float(self.plainTextEdit_11.toPlainText())
-        self.train_ratio = float(self.plainTextEdit_12.toPlainText())
         self.best_model_path = self.filepath_3.toPlainText()
         self.best_model_name = self.filepath_5.toPlainText()
         self.parameter_path = self.filepath_4.toPlainText()
