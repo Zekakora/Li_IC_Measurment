@@ -660,9 +660,9 @@ def model_predict(test_model_path, test_parameter_path, data_formate, v_data, ou
     with torch.no_grad():
         for cycle in range(len(v_data)):
             # 构造滑动窗口
-            if data_formate == 'txt':
+            if data_formate == 'Txt':
                 input = txt_prepare_test(v_data[cycle], window_size, v_mean, v_std)
-            elif data_formate == 'excel':
+            elif data_formate == 'Excel':
                 v_temp = [value for value in v_data.iloc[cycle, :] if pd.notna(value)]
                 input = excel_prepare_test(v_temp, window_size, v_mean, v_std)
             X = np.reshape(input, (-1, 1, window_size)).astype(np.float32)

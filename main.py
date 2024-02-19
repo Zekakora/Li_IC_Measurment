@@ -12,7 +12,7 @@ matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-import ic_model
+import ic_model, ic_getin
 
 # import definition
 # import ic_getin
@@ -148,13 +148,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # MAE
         self.mae_rmse = Figure(figsize=(2, 1.5), dpi=70)
+        self.mae_rmse1 = Figure(figsize=(2, 1.5), dpi=70)
+        self.mae_rmse2 = Figure(figsize=(2, 1.5), dpi=70)
+        self.mae_rmse3 = Figure(figsize=(2, 1.5), dpi=70)
         self.canva_mae_best = FigureCanvas(self.mae_rmse)
-        self.canva_mae_worst = FigureCanvas(self.mae_rmse)
+        self.canva_mae_worst = FigureCanvas(self.mae_rmse1)
         self.horizontalLayout_3.addWidget(self.canva_mae_best)
         self.horizontalLayout_3.addWidget(self.canva_mae_worst)
-
-        self.canva_rmse_best = FigureCanvas(self.mae_rmse)
-        self.canva_rmse_worst = FigureCanvas(self.mae_rmse)
+        self.canva_rmse_best = FigureCanvas(self.mae_rmse2)
+        self.canva_rmse_worst = FigureCanvas(self.mae_rmse3)
         self.horizontalLayout_5.addWidget(self.canva_rmse_best)
         self.horizontalLayout_5.addWidget(self.canva_rmse_worst)
         # 模型训练窗口
@@ -163,6 +165,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         #   模型测试
         self.pushButton_4.clicked.connect(self.test_model)
+        # 模型预测
+        self.pushButton_5.clicked.connect(self.predict_model)
 
     def choosefile_old(self, index):
         fname, _ = QFileDialog.getOpenFileName(None, '选择文件')
@@ -396,11 +400,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             v_index = np.linspace(2.01, 3.60, num_classes)
             
             # MAE_worst
-            mae_worst = self.mae_rmse.add_subplot(111)
+            mae_worst = self.mae_rmse1.add_subplot(111)
 
             mae_worst.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
             mae_worst.plot(v_index, predict[MAE_worst, :], 'r', label='pred')
-            # mae_worst.set_title('MAE_worst',fontsize=10)
+            mae_worst.set_title('MAE_worst')
             mae_worst.set_ylabel('Incremental Capacity(Ah/V)')
             mae_worst.set_xlabel('voltage (V)')
             mae_worst.legend()
@@ -414,7 +418,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             mae_best = self.mae_rmse.add_subplot(111)
             mae_best.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
             mae_best.plot(v_index, predict[MAE_best, :], 'r', label='pred')
-            # mae_best.set_title('MAE_best',fontsize=10)
+            mae_best.set_title('MAE_best')
             mae_best.set_ylabel('Incremental Capacity(Ah/V)')
             mae_best.set_xlabel('voltage (V)')
             mae_best.legend()
@@ -428,10 +432,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             v_index = np.linspace(2.01, 3.60, num_classes)
             
             # RMSE_worst
-            rmse_worst = self.mae_rmse.add_subplot(111)
+            rmse_worst = self.mae_rmse3.add_subplot(111)
             rmse_worst.plot(v_index, ground[RMSE_worst, :], 'bo', label='ground')
             rmse_worst.plot(v_index, predict[RMSE_worst, :], 'r', label='pred')
-            # rmse_worst.set_title('RMSE_worst',fontsize=10)
+            rmse_worst.set_title('RMSE_worst')
             rmse_worst.set_ylabel('Incremental Capacity(Ah/V)')
             rmse_worst.set_xlabel('voltage (V)')
             rmse_worst.legend()
@@ -439,10 +443,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # rmse_worst.cla()
 
             # RMSE_best
-            rmse_best = self.mae_rmse.add_subplot(111)
+            rmse_best = self.mae_rmse2.add_subplot(111)
             rmse_best.plot(v_index, ground[RMSE_best, :], 'bo', label='ground')
             rmse_best.plot(v_index, predict[RMSE_best, :], 'r', label='pred')
-            # rmse_best.set_title('RMSE_best',fontsize=10)
+            rmse_best.set_title('RMSE_best')
             rmse_best.set_ylabel('Incremental Capacity(Ah/V)')
             rmse_best.set_xlabel('voltage (V)')
             rmse_best.legend()
@@ -462,27 +466,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def predict_model(self):
         self.v_path = self.filepath_1.toPlainText()
-        self.ic_path = self.filepath_2.toPlainText()
         self.data_format = self.comboBox.currentText()
-        self.best_model_path = self.filepath_3.toPlainText()
-        self.best_model_name = self.filepath_5.toPlainText()
-        self.parameter_path = self.filepath_4.toPlainText()
+        self.model_import_path = self.filepath_6.toPlainText()
+        self.param_import_path = self.filepath_7.toPlainText()
+        self.data_store_path = self.filepath_8.toPlainText()
         variables = [
             self.v_path,
-            self.ic_path,
             self.data_format,
-            self.window_size,
-            self.epoch_num,
-            self.batch_size,
-            self.train_ratio,
-            self.best_model_path,
-            self.best_model_name,
-            self.parameter_path
+            self.param_import_path,
+            self.model_import_path,
+            self.data_store_path
+
         ]
         all_variables_non_empty = all(variable for variable in variables)
         if all_variables_non_empty:
-            ic_model.predict_model_wrapper()
-            self.status_label.setText("已成功训练模型")
+            v_data = ic_getin.ic_getin_predict(self.data_format, self.v_path)
+            ic_model.predict_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, v_data, self.data_store_path)
+            self.status_label.setText("已成功预测")
         else:
             self.status_label.setText("请检查输入的数据")
 
