@@ -8,6 +8,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
+
+
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure

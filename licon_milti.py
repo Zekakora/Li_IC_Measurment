@@ -10,6 +10,16 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+import sys
+from qt_material import apply_stylesheet
+import qdarkstyle
+from qdarkstyle.light.palette import LightPalette
+# create the application and the main window
+app = QtWidgets.QApplication(sys.argv)
+window = QtWidgets.QMainWindow()
+
+# setup stylesheet
+app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5', palette=LightPalette()))
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
