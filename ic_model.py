@@ -16,6 +16,17 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import matplotlib.pyplot as plt
 
+import re
+
+# 定义一个函数，用于从文件名中提取数字部分
+def extract_number(filename):
+    match = re.search(r'\d+', filename)
+    if match:
+        return int(match.group())
+    else:
+        return -1  # 如果找不到数字，则返回一个标记值
+
+
 
 ##随机种子设定
 def setup_seed(seed):
@@ -447,7 +458,8 @@ def train(input, output, model_select, best_model_path, window_size,
             torch.save(model.state_dict(), doc)
             # 删除之前的模型
             files = [f for f in os.listdir(best_model_path) if f.endswith('.pth')]
-            best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
+            # best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
+            best_pth_file = max(files, key=lambda x: extract_number(x))
             for file in files:
                 if file != best_pth_file:
                     os.remove(best_model_path + '/' + file)
@@ -718,7 +730,7 @@ def train_model_wrapper(model_select, best_model_path, best_model_name, paramete
                 window_size=window_size, epoch_num=epoch_num, batch_size=batch_size,
                 train_ratio=train_ratio, data_formate=data_formate, v_data=v_data,
                 ic_data=ic_data, num_classes=num_classes)
-    print("我已完成")
+    # print("我已完成")
 
     return total_loss, total_vaildloss
 

@@ -1,6 +1,14 @@
+import base64
+
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import *
 import sys
 import os
+
+from PyQt5.uic.properties import QtGui
+
+import icons
 from licon_milti import Ui_MainWindow
 import numpy as np
 import pandas as pd
@@ -9,17 +17,23 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
 
-
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 import ic_model, ic_getin
 
-# import definition
-# import ic_getin
-# import ic_getii
+import re
 
+# 定义一个函数，用于从文件名中提取数字部分
+def extract_number(filename):
+    match = re.search(r'\d+', filename)
+    if match:
+        return int(match.group())
+    else:
+        return -1  # 如果找不到数字，则返回一个标记值
+
+'''打包需要添加命令 --hidden-import openpyxl.cell._writer'''
 # 需要更改的
 """
 加载UI里面 23嗲用函数错了
@@ -87,6 +101,7 @@ class MyFigure(FigureCanvas):
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
+
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.F = MyFigure(width=8, height=4, dpi=100)
@@ -141,7 +156,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.gridlayout_inup.addWidget(self.canvas)
         # 将 FigureCanvas 添加到第二个 Group Box 的布局中
         self.gridlayout_indown.addWidget(self.canvas_1)
-        self.pushButton.clicked.connect(self.ic_getin_ref)
+        # self.pushButton.clicked.connect(self.ic_getin_ref)
 
         # loss图绘制
         self.icloss = Figure(figsize=(5, 4), dpi=100)
@@ -190,6 +205,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         data_format = self.data_format
         ic_path = str(self.ic_path)
         v_path = str(self.v_path)
+        print("开始加载数据 当前数据格式:{}".format(self.data_format))
         self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
         output_size = None
         Fup = MyFigure(width=6, height=4, dpi=100)
@@ -303,7 +319,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.degration = degration
         self.output_size = output_size
 
-        print(self.output_size)
+        # print(self.output_size)
 
         return
         # return v_data, ic_data, output_size, degration
@@ -315,11 +331,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.data_format = self.comboBox.currentText()
         self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
         if self.v_path and self.ic_path and self.data_format:
-            self.ic_getin()
-            self.status_label.setText("已成功加载数据".format(self.data_format))
-            # v_data, ic_data, output_size, degration = self.ic_getin()
-            # print(v_data, ic_data, output_size, degration)
+            try:
+                self.ic_getin()
+                self.status_label.setText("已成功加载数据".format(self.data_format))
+                # v_data, ic_data, output_size, degration = self.ic_getin()
+                # print(v_data, ic_data, output_size, degration)
+            except Exception as e:
+                # 捕获异常并显示错误消息
+                QMessageBox.critical(self, '出错啦', str(e))
+
         else:
+            self.lackdata()
             self.status_label.setText("请检查输入的数据")
 
     def train_model(self):
@@ -349,31 +371,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         all_variables_non_empty = all(variable for variable in variables)
         self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
         if all_variables_non_empty:
-            self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
-            self.window_size = int(self.plainTextEdit_9.toPlainText())
-            self.epoch_num = int(self.plainTextEdit_10.toPlainText())
-            self.batch_size = int(self.plainTextEdit_11.toPlainText())
-            self.train_ratio = float(self.plainTextEdit_12.toPlainText())
-            total_loss, total_vaildloss = ic_model.train_model_wrapper(self.model_select, self.best_model_path,
-                                                                       self.best_model_name,
-                                                                       self.parameter_path,
-                                                                       self.window_size, self.epoch_num,
-                                                                       self.batch_size, self.train_ratio,
-                                                                       self.data_format,
-                                                                       self.v_data, self.ic_data, self.output_size)
+            try:
+                self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
+                self.window_size = int(self.plainTextEdit_9.toPlainText())
+                self.epoch_num = int(self.plainTextEdit_10.toPlainText())
+                self.batch_size = int(self.plainTextEdit_11.toPlainText())
+                self.train_ratio = float(self.plainTextEdit_12.toPlainText())
+                total_loss, total_vaildloss = ic_model.train_model_wrapper(self.model_select, self.best_model_path,
+                                                                           self.best_model_name,
+                                                                           self.parameter_path,
+                                                                           self.window_size, self.epoch_num,
+                                                                           self.batch_size, self.train_ratio,
+                                                                           self.data_format,
+                                                                           self.v_data, self.ic_data, self.output_size)
 
-            Loss = self.icloss.add_subplot(111)
-            Loss.plot(range(1, len(total_loss) + 1), total_loss, 'bo', label='trainloss')
-            Loss.plot(range(1, len(total_vaildloss) + 1), total_vaildloss, 'r', label='validloss')
-            Loss.set_title('loss_figure')
-            Loss.set_ylabel('loss')
-            Loss.set_xlabel('epoch_num')
-            Loss.legend()
-            self.canvas_loss.draw()
-            self.rename(self.best_model_path, self.best_model_name)
-            self.status_label.setText("模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth".format(self.model_select,self.best_model_path,self.best_model_name))
+                Loss = self.icloss.add_subplot(111)
+                Loss.plot(range(1, len(total_loss) + 1), total_loss, 'bo', label='trainloss')
+                Loss.plot(range(1, len(total_vaildloss) + 1), total_vaildloss, 'r', label='validloss')
+                Loss.set_title('loss_figure')
+                Loss.set_ylabel('loss')
+                Loss.set_xlabel('epoch_num')
+                Loss.legend()
+                self.canvas_loss.draw()
+                self.rename(self.best_model_path, self.best_model_name)
+                self.status_label.setText("模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth, 超参数路径{}_parameter.txt".format(self.model_select,self.best_model_path,self.best_model_name,self.best_model_path))
+            except Exception as e:
+                # 捕获异常并显示错误消息
+                QMessageBox.critical(self, '出错啦', str(e))
+
 
         else:
+            self.lackdata()
             self.status_label.setText("请检查输入数据")
 
     def test_model(self):
@@ -390,79 +418,84 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.param_import_path,
             self.model_import_path
         ]
-
         if all(self.v_path and self.ic_path and self.model_import_path and self.param_import_path and not variable.empty for variable in [self.v_data, self.ic_data]):
-            self.status_label.setText("开始预测")
-            results, MAE, RMSE, num_classes,ground, predict = ic_model.test_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, self.v_data, self.ic_data)
+            try:
+                self.status_label.setText("开始预测")
+                results, MAE, RMSE, num_classes,ground, predict = ic_model.test_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, self.v_data, self.ic_data)
 
-            '''绘图区'''
+                '''绘图区'''
 
-            MAE_worst = np.argmax(MAE)
-            MAE_best = np.argmin(MAE)
-            v_index = np.linspace(2.01, 3.60, num_classes)
-            
-            # MAE_worst
-            mae_worst = self.mae_rmse1.add_subplot(111)
+                MAE_worst = np.argmax(MAE)
+                MAE_best = np.argmin(MAE)
+                v_index = np.linspace(2.01, 3.60, num_classes)
 
-            mae_worst.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
-            mae_worst.plot(v_index, predict[MAE_worst, :], 'r', label='pred')
-            mae_worst.set_title('MAE_worst')
-            mae_worst.set_ylabel('Incremental Capacity(Ah/V)')
-            mae_worst.set_xlabel('voltage (V)')
-            mae_worst.legend()
-            # self.mae_rmse.subplots_adjust(left=0.3, right=0.4, top=0.2, bottom=0.1)
-            self.canva_mae_worst.draw()
-            # mae_worst.cla()
+                # MAE_worst
+                mae_worst = self.mae_rmse1.add_subplot(111)
+
+                mae_worst.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
+                mae_worst.plot(v_index, predict[MAE_worst, :], 'r', label='pred')
+                mae_worst.set_title('MAE_worst')
+                mae_worst.set_ylabel('Incremental Capacity(Ah/V)')
+                mae_worst.set_xlabel('voltage (V)')
+                mae_worst.legend()
+                # self.mae_rmse.subplots_adjust(left=0.3, right=0.4, top=0.2, bottom=0.1)
+                self.canva_mae_worst.draw()
+                # mae_worst.cla()
 
 
 
-            # MAE_best
-            mae_best = self.mae_rmse.add_subplot(111)
-            mae_best.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
-            mae_best.plot(v_index, predict[MAE_best, :], 'r', label='pred')
-            mae_best.set_title('MAE_best')
-            mae_best.set_ylabel('Incremental Capacity(Ah/V)')
-            mae_best.set_xlabel('voltage (V)')
-            mae_best.legend()
-            self.canva_mae_best.draw()
-            # mae_best.cla()
- 
- 
-            # RMSE_figure
-            RMSE_worst = np.argmax(RMSE)
-            RMSE_best = np.argmin(RMSE)
-            v_index = np.linspace(2.01, 3.60, num_classes)
-            
-            # RMSE_worst
-            rmse_worst = self.mae_rmse3.add_subplot(111)
-            rmse_worst.plot(v_index, ground[RMSE_worst, :], 'bo', label='ground')
-            rmse_worst.plot(v_index, predict[RMSE_worst, :], 'r', label='pred')
-            rmse_worst.set_title('RMSE_worst')
-            rmse_worst.set_ylabel('Incremental Capacity(Ah/V)')
-            rmse_worst.set_xlabel('voltage (V)')
-            rmse_worst.legend()
-            self.canva_rmse_worst.draw()
-            # rmse_worst.cla()
+                # MAE_best
+                mae_best = self.mae_rmse.add_subplot(111)
+                mae_best.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
+                mae_best.plot(v_index, predict[MAE_best, :], 'r', label='pred')
+                mae_best.set_title('MAE_best')
+                mae_best.set_ylabel('Incremental Capacity(Ah/V)')
+                mae_best.set_xlabel('voltage (V)')
+                mae_best.legend()
+                self.canva_mae_best.draw()
+                # mae_best.cla()
 
-            # RMSE_best
-            rmse_best = self.mae_rmse2.add_subplot(111)
-            rmse_best.plot(v_index, ground[RMSE_best, :], 'bo', label='ground')
-            rmse_best.plot(v_index, predict[RMSE_best, :], 'r', label='pred')
-            rmse_best.set_title('RMSE_best')
-            rmse_best.set_ylabel('Incremental Capacity(Ah/V)')
-            rmse_best.set_xlabel('voltage (V)')
-            rmse_best.legend()
-            self.canva_rmse_best.draw()
-            # rmse_best.cla()
-            self.status_label.setText("绘图完成")
 
-            a = str(results.get('RMSE', "null"))
-            self.label_RMSE.setText(a)
-            a = str(results.get('MAE', "null"))
-            self.label_MAE.setText(a)
-            a = str(results.get('R2', "null"))
-            self.label_R.setText(a)
+                # RMSE_figure
+                RMSE_worst = np.argmax(RMSE)
+                RMSE_best = np.argmin(RMSE)
+                v_index = np.linspace(2.01, 3.60, num_classes)
+
+                # RMSE_worst
+                rmse_worst = self.mae_rmse3.add_subplot(111)
+                rmse_worst.plot(v_index, ground[RMSE_worst, :], 'bo', label='ground')
+                rmse_worst.plot(v_index, predict[RMSE_worst, :], 'r', label='pred')
+                rmse_worst.set_title('RMSE_worst')
+                rmse_worst.set_ylabel('Incremental Capacity(Ah/V)')
+                rmse_worst.set_xlabel('voltage (V)')
+                rmse_worst.legend()
+                self.canva_rmse_worst.draw()
+                # rmse_worst.cla()
+
+                # RMSE_best
+                rmse_best = self.mae_rmse2.add_subplot(111)
+                rmse_best.plot(v_index, ground[RMSE_best, :], 'bo', label='ground')
+                rmse_best.plot(v_index, predict[RMSE_best, :], 'r', label='pred')
+                rmse_best.set_title('RMSE_best')
+                rmse_best.set_ylabel('Incremental Capacity(Ah/V)')
+                rmse_best.set_xlabel('voltage (V)')
+                rmse_best.legend()
+                self.canva_rmse_best.draw()
+                # rmse_best.cla()
+                self.status_label.setText("绘图完成")
+
+                a = str(results.get('RMSE', "null"))
+                self.label_RMSE.setText(a)
+                a = str(results.get('MAE', "null"))
+                self.label_MAE.setText(a)
+                a = str(results.get('R2', "null"))
+                self.label_R.setText(a)
+            except Exception as e:
+                # 捕获异常并显示错误消息
+                QMessageBox.critical(self, '出错啦', str(e))
+
         else:
+            self.lackdata()
             self.status_label.setText("请检查输入数据")
 
 
@@ -482,16 +515,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         ]
         all_variables_non_empty = all(variable for variable in variables)
         if all_variables_non_empty:
-            v_data = ic_getin.ic_getin_predict(self.data_format, self.v_path)
-            ic_model.predict_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, v_data, self.data_store_path)
-            self.status_label.setText("已成功预测")
+            try:
+                v_data = ic_getin.ic_getin_predict(self.data_format, self.v_path)
+                ic_model.predict_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, v_data, self.data_store_path)
+                self.status_label.setText("已成功预测,数据保存路径{}".format(self.data_store_path))
+                self.finish()
+            except Exception as e:
+                # 捕获异常并显示错误消息
+                QMessageBox.critical(self, '出错啦', str(e))
+
         else:
+            self.lackdata()
             self.status_label.setText("请检查输入的数据")
 
     def rename(self, best_model_path, best_model_name):
         files = [f for f in os.listdir(best_model_path) if f.endswith('.pth')]
         if files:
-            best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
+            # 使用提取函数来选择最佳文件
+            best_pth_file = max(files, key=lambda x: extract_number(x))
+            # best_pth_file = max(files, key=lambda x: int(x[:4].split('_')[0]))
             os.rename(os.path.join(best_model_path, best_pth_file),
                       os.path.join(best_model_path, best_model_name + '.pth'))
 
@@ -500,6 +542,57 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             print("No .pth files found in the directory.")
 
+    def lackdata(self):
+        # 将base64编码的图像数据解码为字节数据
+        icon_bytes = base64.b64decode(icons.icon1)
+        # 将字节数据转换为QPixmap
+        pixmap = QPixmap()
+        pixmap.loadFromData(icon_bytes)
+        # 将QPixmap转换为QIcon
+        icon = QIcon(pixmap)
+
+        msg_box = QMessageBox()
+        msg_box.setWindowIcon(icon)  # 设置窗口图标
+        msg_box.setIconPixmap(pixmap)  # 设置消息框图标
+        msg_box.setWindowTitle('出错啦')
+        msg_box.setText('请检查输入数据（此对话框会自动关闭）')
+        # icon = QIcon()
+        # icon.addPixmap(QtGui.QPixmap.fromImage(QtGui.QImage.fromData(base64.b64decode(icons.icon1))))
+        # msg_box.setWindowIcon(icon)
+        msg_box.setIcon(QMessageBox.Information)
+        # 创建一个定时器，3秒后关闭消息框
+        timer = QTimer(msg_box)
+        timer.setSingleShot(True)
+        timer.timeout.connect(msg_box.accept)
+        timer.start(1500)  # 3000毫秒后关闭消息框
+        msg_box.exec_()
+
+    def finish(self):
+        # 将base64编码的图像数据解码为字节数据
+        icon_bytes = base64.b64decode(icons.icon1)
+        # 将字节数据转换为QPixmap
+        pixmap = QPixmap()
+        pixmap.loadFromData(icon_bytes)
+        # 将QPixmap转换为QIcon
+        icon = QIcon(pixmap)
+
+        msg_box = QMessageBox()
+        msg_box.setWindowIcon(icon)  # 设置窗口图标
+        msg_box.setIconPixmap(pixmap)  # 设置消息框图标
+        msg_box.setWindowTitle('好耶ヽ(✿ﾟ▽ﾟ)ノ')
+        msg_box.setText('预测已完成~（此对话框会自动关闭）')
+        # icon = QIcon()
+        # icon.addPixmap(QtGui.QPixmap.fromImage(QtGui.QImage.fromData(base64.b64decode(icons.icon1))))
+        # msg_box.setWindowIcon(icon)
+
+        msg_box.setIcon(QMessageBox.Information)
+        # 创建一个定时器，3秒后关闭消息框
+        timer = QTimer(msg_box)
+        timer.setSingleShot(True)
+        timer.timeout.connect(msg_box.accept)
+        timer.start(1500)  # 3000毫秒后关闭消息框
+
+        msg_box.exec_()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
