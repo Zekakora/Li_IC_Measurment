@@ -107,6 +107,9 @@ def ic_getin (data_formate,v_path,ic_path):
 #ic_getin_predict用于加载预测数据输入
 def ic_getin_predict (data_formate,v_path):
     #包含一个数据的预览图
+    plot_cycle = None
+    v_data = None
+    cycle_num = None
     if data_formate =='txt':
         v_data = []
         with open(v_path, 'r') as file:
@@ -114,34 +117,35 @@ def ic_getin_predict (data_formate,v_path):
         cycle_num = len(v_data)
         plot_cycle = range(0, cycle_num, int(cycle_num / 10))
         ##input_figure,Q_V的图像
-        plt.figure()
-        for cycle in plot_cycle:
-            plot_y = v_data[cycle].split(',')
-            plot_y = np.array(plot_y)  # 假设以逗号为分隔符
-            plot_y = np.delete(plot_y, -1, axis=0)
-            plot_y = plot_y.astype(np.float)
-            plt.plot(range(len(plot_y)), plot_y, color=plt.cm.viridis(cycle / cycle_num))
-        plt.colorbar(plt.cm.ScalarMappable(cmap='viridis',norm=plt.Normalize(0, cycle_num)),label='Cycles',ticks=plot_cycle)
-        plt.title('Q-V data preview')
-        plt.xlabel('Point index')
-        plt.ylabel('Voltage (V)')
-        plt.show()
+        # plt.figure()
+        # # for cycle in plot_cycle:
+        # #     plot_y = v_data[cycle].split(',')
+        # #     plot_y = np.array(plot_y)  # 假设以逗号为分隔符
+        # #     plot_y = np.delete(plot_y, -1, axis=0)
+        # #     plot_y = plot_y.astype(np.float)
+        # #     plt.plot(range(len(plot_y)), plot_y, color=plt.cm.viridis(cycle / cycle_num))
+        # # plt.colorbar(plt.cm.ScalarMappable(cmap='viridis',norm=plt.Normalize(0, cycle_num)),label='Cycles',ticks=plot_cycle)
+        # # plt.title('Q-V data preview')
+        # # plt.xlabel('Point index')
+        # # plt.ylabel('Voltage (V)')
+        # # plt.show()
     elif data_formate == 'excel':
         v_data=pd.read_excel(v_path)
         cycle_num = len(v_data)
         plot_cycle = range(0, cycle_num, int(cycle_num / 10))
         ##input_figure,Q_V的图像
-        plt.figure()
-        for cycle in plot_cycle:
-            plot_v=v_data.iloc[cycle,:]
-            plot_v = [value for value in plot_v if pd.notna(value)]
-            plt.plot(range(len(plot_v)), plot_v, color=plt.cm.viridis(cycle / cycle_num))
-        plt.colorbar(plt.cm.ScalarMappable(cmap='viridis', norm=plt.Normalize(0, cycle_num)), label='Cycles',ticks=plot_cycle)
-        plt.title('Q-V data preview')
-        plt.xlabel('Point index')
-        plt.ylabel('Voltage (V)')
-        plt.show()
-    return v_data
+        # plt.figure()
+        # for cycle in plot_cycle:
+        #     plot_v=v_data.iloc[cycle,:]
+        #     plot_v = [value for value in plot_v if pd.notna(value)]
+        #     plt.plot(range(len(plot_v)), plot_v, color=plt.cm.viridis(cycle / cycle_num))
+        # plt.colorbar(plt.cm.ScalarMappable(cmap='viridis', norm=plt.Normalize(0, cycle_num)), label='Cycles',ticks=plot_cycle)
+        # plt.title('Q-V data preview')
+        # plt.xlabel('Point index')
+        # plt.ylabel('Voltage (V)')
+        # plt.show()
+        print(plot_cycle)
+    return v_data, (plot_cycle), cycle_num
 
 
 

@@ -108,6 +108,9 @@ def ic_getin (data_formate,v_path,ic_path):
 
 #ic_getin_predict用于加载预测数据输入
 def ic_getin_predict (data_formate,v_path):
+    plot_cycle = None
+    v_data = None
+    cycle_num = None
     #包含一个数据的预览图
     if data_formate =='Txt':
         v_data = []
@@ -143,4 +146,4 @@ def ic_getin_predict (data_formate,v_path):
     #     plt.xlabel('Point index')
     #     plt.ylabel('Voltage (V)')
     #     plt.show()
-    return v_data
+    return v_data,plot_cycle, cycle_num

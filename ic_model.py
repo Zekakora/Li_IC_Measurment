@@ -685,10 +685,12 @@ def model_predict(test_model_path, test_parameter_path, data_formate, v_data, ou
             predict.append(np.ceil(output.cpu().detach().numpy()))
     predict = np.array(predict) / 3600
     # 存储预测得到的数据
-    if data_formate == 'txt':
-        np.savetxt(output_path + '/predict.txt', predict, delimiter=",")
-    elif data_formate == 'excel':
-        pd.DataFrame(predict).to_excel(output_path + '/predict.xlsx', index=False, header=False)
+    if data_formate == 'Txt':
+        np.savetxt(output_path + 'predict.txt', predict, delimiter=",")
+    elif data_formate == 'Excel':
+        output_path = output_path + 'predict.xlsx'
+        print(output_path)
+        pd.DataFrame(predict).to_excel(output_path, index=False, header=False)
     print("finish")
 
 '''
