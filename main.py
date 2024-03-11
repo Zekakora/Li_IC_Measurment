@@ -16,7 +16,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
-
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -25,6 +24,7 @@ import ic_model, ic_getin
 
 import re
 
+
 # 定义一个函数，用于从文件名中提取数字部分
 def extract_number(filename):
     match = re.search(r'\d+', filename)
@@ -32,6 +32,7 @@ def extract_number(filename):
         return int(match.group())
     else:
         return -1  # 如果找不到数字，则返回一个标记值
+
 
 '''打包需要添加命令 --hidden-import openpyxl.cell._writer'''
 # 需要更改的
@@ -99,6 +100,7 @@ class MyFigure(FigureCanvas):
         self.axes = self.fig.add_subplot(111)
 
 
+# IC
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
 
@@ -139,7 +141,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.filebutton_7.clicked.connect(lambda: self.choosefile_old(7))
         self.filebutton_8.clicked.connect(lambda: self.choosefile(8))
 
-        self.pushButton_soh2.clicked.connect(self.clean)
+        self.pushButton_2.clicked.connect(self.clean)
 
         # 输入数据展示按钮
         self.pushButton.clicked.connect(self.ic_getin_ref)
@@ -181,7 +183,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 模型训练窗口
         self.pushButton_3.clicked.connect(self.train_model)
         # self.status_label.setText("已成功启动窗口")
-
         #   模型测试
         self.pushButton_4.clicked.connect(self.test_model)
         # 模型预测
@@ -194,6 +195,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             getattr(self, f"filepath_{index}").setPlainText(fname)
             setattr(self, f"ic_path_{index}", fname)
             self.status_label.setText("已选择文件{}".format(index))
+
 
     def choosefile(self, index):
         fname = QFileDialog.getExistingDirectory(None, '选择路径')
@@ -399,7 +401,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 Loss.legend()
                 self.canvas_loss.draw()
                 self.rename(self.best_model_path, self.best_model_name)
-                self.status_label.setText("模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth, 超参数路径{}_parameter.txt".format(self.model_select,self.best_model_path,self.best_model_name,self.best_model_path))
+                self.status_label.setText(
+                    "模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth, 超参数路径{}_parameter.txt".format(
+                        self.model_select, self.best_model_path, self.best_model_name, self.best_model_path))
             except Exception as e:
                 # 捕获异常并显示错误消息
                 QMessageBox.critical(self, '出错啦', str(e))
@@ -423,10 +427,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.param_import_path,
             self.model_import_path
         ]
-        if all(self.v_path and self.ic_path and self.model_import_path and self.param_import_path and not variable.empty for variable in [self.v_data, self.ic_data]):
+        if all(self.v_path and self.ic_path and self.model_import_path and self.param_import_path and not variable.empty
+               for variable in [self.v_data, self.ic_data]):
             try:
                 self.status_label.setText("开始预测")
-                results, MAE, RMSE, num_classes,ground, predict = ic_model.test_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, self.v_data, self.ic_data)
+                results, MAE, RMSE, num_classes, ground, predict = ic_model.test_model_wrapper(self.model_import_path,
+                                                                                               self.param_import_path,
+                                                                                               self.data_format,
+                                                                                               self.v_data,
+                                                                                               self.ic_data)
 
                 '''绘图区'''
 
@@ -455,8 +464,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.canva_mae_worst.draw()
                 # mae_worst.cla()
 
-
-
                 # MAE_best
                 mae_best = self.mae_rmse.add_subplot(111)
                 mae_best.plot(v_index, ground[MAE_best, :], 'bo', label='ground')
@@ -467,7 +474,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 mae_best.legend()
                 self.canva_mae_best.draw()
                 # mae_best.cla()
-
 
                 # RMSE_figure
                 RMSE_worst = np.argmax(RMSE)
@@ -511,7 +517,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.lackdata()
             self.status_label.setText("请检查输入数据")
 
-
     def predict_model(self):
         self.v_path = self.filepath_1.toPlainText()
         self.data_format = self.comboBox.currentText()
@@ -549,7 +554,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.icinup.tight_layout()  # 调整布局以确保子图不会重叠
                 self.canvas.draw()  # 重绘图形
 
-                ic_model.predict_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, v_data, self.data_store_path)
+                ic_model.predict_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, v_data,
+                                               self.data_store_path)
                 self.status_label.setText("已成功预测,数据保存路径{}".format(self.data_store_path))
                 self.finish()
             except Exception as e:
@@ -616,8 +622,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.canvas.draw()
         self.canvas_1.draw()
 
-
-
     def finish(self):
         # 将base64编码的图像数据解码为字节数据
         icon_bytes = base64.b64decode(icons.icon1)
@@ -644,6 +648,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         timer.start(1500)  # 3000毫秒后关闭消息框
 
         msg_box.exec_()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
