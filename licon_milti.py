@@ -1653,7 +1653,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "锂电池小工具"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "基于短时间充电数据的锂电池健康状态及老化机制智能分析平台"))
         self.groupBox_2.setTitle(_translate("MainWindow", "输入数据预览"))
         self.groupBox.setTitle(_translate("MainWindow", "输出数据预览"))
         self.filebutton_2.setText(_translate("MainWindow", "..."))

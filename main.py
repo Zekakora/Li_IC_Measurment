@@ -556,7 +556,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 ic_model.predict_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, v_data,
                                                self.data_store_path)
-                self.status_label.setText("已成功预测,数据保存路径{}".format(self.data_store_path))
+                self.status_label.setText("已成功预测,数据保存在{}目录下".format(self.data_store_path))
                 self.finish()
             except Exception as e:
                 # 捕获异常并显示错误消息
