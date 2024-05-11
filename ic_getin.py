@@ -5,15 +5,15 @@ import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 #这两个是数据加载的两个路径,尾缀是txt还是xlsx看用户选择的数据格式
 #用户可能直接从windows文件夹中复制路径，所以要注意路径的斜杠，是否可以在前面加r控制只读字符串
-data_formate='excel'#用户选择的数据格式
-v_path='D:/v.xlsx'#这个是Q_V数据路径
-ic_path='D:/ic.xlsx'#这个是IC数据路径
+# data_formate='excel'#用户选择的数据格式
+# v_path='D:/v.xlsx'#这个是Q_V数据路径
+# ic_path='D:/ic.xlsx'#这个是IC数据路径
 #ic_getin_predict用于加载训练数据输入
 
 
 def ic_getin (data_formate,v_path,ic_path):
     #包含两个数据的预览图
-    if data_formate =='txt':
+    if data_formate =='Txt':
         ic_data = np.genfromtxt(ic_path, delimiter=',')
         ic_data = np.delete(ic_data, -1, axis=1)  # ic数值为单位C/V或者mAh/V
         output_size= ic_data.shape[1]
@@ -60,7 +60,7 @@ def ic_getin (data_formate,v_path,ic_path):
         elif peaks_num == 2:
             degration='锂库存和活性物质损失'
 
-    elif data_formate == 'excel':
+    elif data_formate == 'Excel':
         ic_data = pd.read_excel(ic_path)
         output_size = ic_data.shape[1]
         v_data=pd.read_excel(v_path)

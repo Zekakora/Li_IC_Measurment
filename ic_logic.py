@@ -6,10 +6,9 @@ from PyQt5.QtWidgets import *
 import sys
 import os
 
-from PyQt5.uic.properties import QtGui
 
 import icons
-from licon_milti import Ui_MainWindow
+from licon_ic import Ui_MainWindow
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -21,9 +20,10 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 import ic_model, ic_getin
-
+from soh_logic import sohMainWindow
 import re
 
+from oldana_logic import oldMainWindow
 
 # 定义一个函数，用于从文件名中提取数字部分
 def extract_number(filename):
@@ -108,6 +108,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.F = MyFigure(width=8, height=4, dpi=100)
 
+        # 添加新页
+        self.sohpage = sohMainWindow()
+        self.stackedWidget.addWidget(self.sohpage)
+        self.oldpage = oldMainWindow()
+        self.stackedWidget.addWidget(self.oldpage)
+
+
         # 选项框内容定义区
         # self.data_format = self.comboBox.currentText()
         self.v_path = None
@@ -180,6 +187,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.canva_rmse_worst = FigureCanvas(self.mae_rmse3)
         self.horizontalLayout_5.addWidget(self.canva_rmse_best)
         self.horizontalLayout_5.addWidget(self.canva_rmse_worst)
+
+
+
+
         # 模型训练窗口
         self.pushButton_3.clicked.connect(self.train_model)
         # self.status_label.setText("已成功启动窗口")
@@ -188,13 +199,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 模型预测
         self.pushButton_5.clicked.connect(self.predict_model)
 
+
+
     def choosefile_old(self, index):
         fname, _ = QFileDialog.getOpenFileName(None, '选择文件')
         if fname:  # 如果用户选择了文件
             fname = str(fname)
             getattr(self, f"filepath_{index}").setPlainText(fname)
             setattr(self, f"ic_path_{index}", fname)
-            self.status_label.setText("已选择文件{}".format(index))
+            # self.status_label.setText("已选择文件{}".format(index))
 
 
     def choosefile(self, index):
@@ -203,14 +216,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             fname = str(fname)
             getattr(self, f"filepath_{index}").setPlainText(fname)
             setattr(self, f"ic_path_{index}", fname)
-            self.status_label.setText("已选择路径{}".format(index))
+            # self.status_label.setText("已选择路径{}".format(index))
 
     def ic_getin(self):
         data_format = self.data_format
         ic_path = str(self.ic_path)
         v_path = str(self.v_path)
         print("开始加载数据 当前数据格式:{}".format(self.data_format))
-        self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
+        # self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
         output_size = None
         self.icinup.clf()
         self.icindown.clf()
@@ -335,11 +348,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.v_path = self.filepath_1.toPlainText()
         self.ic_path = self.filepath_2.toPlainText()
         self.data_format = self.comboBox.currentText()
-        self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
+        # self.status_label.setText("开始加载数据 当前数据格式:{}".format(self.data_format))
         if self.v_path and self.ic_path and self.data_format:
             try:
                 self.ic_getin()
-                self.status_label.setText("已成功加载数据".format(self.data_format))
+                # self.status_label.setText("已成功加载数据".format(self.data_format))
                 # v_data, ic_data, output_size, degration = self.ic_getin()
                 # print(v_data, ic_data, output_size, degration)
             except Exception as e:
@@ -348,7 +361,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         else:
             self.lackdata()
-            self.status_label.setText("请检查输入的数据")
+            # self.status_label.setText("请检查输入的数据")
 
     def train_model(self):
         self.v_path = self.filepath_1.toPlainText()
@@ -375,10 +388,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.parameter_path
         ]
         all_variables_non_empty = all(variable for variable in variables)
-        self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
+        # self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
         if all_variables_non_empty:
             try:
-                self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
+                # self.status_label.setText("开始训练模型,当前选择的模型{}".format(self.model_select))
                 self.window_size = int(self.plainTextEdit_9.toPlainText())
                 self.epoch_num = int(self.plainTextEdit_10.toPlainText())
                 self.batch_size = int(self.plainTextEdit_11.toPlainText())
@@ -401,9 +414,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 Loss.legend()
                 self.canvas_loss.draw()
                 self.rename(self.best_model_path, self.best_model_name)
-                self.status_label.setText(
-                    "模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth, 超参数路径{}_parameter.txt".format(
-                        self.model_select, self.best_model_path, self.best_model_name, self.best_model_path))
+                # self.status_label.setText(
+                #     "模型训练完成，模型类型{}，模型路径{}，模型名称{}.pth, 超参数路径{}_parameter.txt".format(
+                #         self.model_select, self.best_model_path, self.best_model_name, self.best_model_path))
             except Exception as e:
                 # 捕获异常并显示错误消息
                 QMessageBox.critical(self, '出错啦', str(e))
@@ -411,7 +424,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         else:
             self.lackdata()
-            self.status_label.setText("请检查输入数据")
+            # self.status_label.setText("请检查输入数据")
 
     def test_model(self):
         self.v_path = self.filepath_1.toPlainText()
@@ -429,8 +442,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         ]
         if all(self.v_path and self.ic_path and self.model_import_path and self.param_import_path and not variable.empty
                for variable in [self.v_data, self.ic_data]):
-            try:
-                self.status_label.setText("开始预测")
+            # try:
+                # self.status_label.setText("开始预测")
                 results, MAE, RMSE, num_classes, ground, predict = ic_model.test_model_wrapper(self.model_import_path,
                                                                                                self.param_import_path,
                                                                                                self.data_format,
@@ -451,7 +464,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.canva_mae_worst.draw()
                 self.canva_rmse_worst.draw()
                 self.canva_mae_best.draw()
-                # MAE_worst
+
+                #MAE_worst
                 mae_worst = self.mae_rmse1.add_subplot(111)
 
                 mae_worst.plot(v_index, ground[MAE_worst, :], 'bo', label='ground')
@@ -509,13 +523,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.label_MAE.setText(a)
                 a = str(results.get('R2', "null"))
                 self.label_R.setText(a)
-            except Exception as e:
-                # 捕获异常并显示错误消息
-                QMessageBox.critical(self, '出错啦', str(e))
+            # except Exception as e:
+            #     # 捕获异常并显示错误消息
+            #     QMessageBox.critical(self, '出错啦', str(e))
 
         else:
             self.lackdata()
-            self.status_label.setText("请检查输入数据")
+            # self.status_label.setText("请检查输入数据")
 
     def predict_model(self):
         self.v_path = self.filepath_1.toPlainText()
@@ -556,7 +570,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
                 ic_model.predict_model_wrapper(self.model_import_path, self.param_import_path, self.data_format, v_data,
                                                self.data_store_path)
-                self.status_label.setText("已成功预测,数据保存在{}目录下".format(self.data_store_path))
+                # self.status_label.setText("已成功预测,数据保存在{}目录下".format(self.data_store_path))
                 self.finish()
             except Exception as e:
                 # 捕获异常并显示错误消息
@@ -564,7 +578,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         else:
             self.lackdata()
-            self.status_label.setText("请检查输入的数据")
+            # self.status_label.setText("请检查输入的数据")
 
     def rename(self, best_model_path, best_model_name):
         files = [f for f in os.listdir(best_model_path) if f.endswith('.pth')]

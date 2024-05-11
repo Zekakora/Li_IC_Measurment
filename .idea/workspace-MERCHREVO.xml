@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dc2cd4ed-25d3-4931-a122-c1045926b52e" name="更改" comment="icbug真修完了">
+      <change beforePath="$PROJECT_DIR$/ic_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ic_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/licon_milti.py" beforeDir="false" afterPath="$PROJECT_DIR$/licon_milti.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="zein_dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="Zekakora" />
+        <option name="repository" value="Licon_performance" />
+      </RepoCoordinatesHolder>
+    </option>
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ea714b02-7809-4573-a9c8-2a272023fe18" />
+        <option name="url" value="https://github.com/Zekakora/Licon_performance.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2b7TQKujuwB5XwphGWVD1NhkhyX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Infer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Licon.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SOH_main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.def.executor&quot;: &quot;Run&quot;,
+    &quot;Python.definition.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fluent_licon.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ic_getin.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ic_model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.licon.executor&quot;: &quot;Run&quot;,
+    &quot;Python.licon_milti.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainwindow.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main——————_.executor&quot;: &quot;Run&quot;,
+    &quot;Python.name.executor&quot;: &quot;Run&quot;,
+    &quot;Python.plotter.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scr.executor&quot;: &quot;Run&quot;,
+    &quot;Python.untitled.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive/Projects/Coding/Dachuang_20232024&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalTools&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OneDrive\Projects\Coding\Licon" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="SOH_main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Licon_performance" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SOH_main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ic_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Licon_performance" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ic_model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Licon_performance" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="plotter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Licon_performance" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plotter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="untitled" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Licon_performance" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/untitled.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.SOH_main" />
+      <item itemvalue="Python.ic_model" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.plotter" />
+      <item itemvalue="Python.untitled" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.SOH_main" />
+        <item itemvalue="Python.plotter" />
+        <item itemvalue="Python.untitled" />
+        <item itemvalue="Python.ic_model" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-09665e90c3a7-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.15026.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\DOGE\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="dc2cd4ed-25d3-4931-a122-c1045926b52e" name="更改" comment="" />
+      <created>1705565100403</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705565100403</updated>
+      <workItem from="1705565101600" duration="2519000" />
+      <workItem from="1705588160045" duration="16000" />
+      <workItem from="1705588534427" duration="88000" />
+      <workItem from="1705588769551" duration="5024000" />
+      <workItem from="1705628660978" duration="5417000" />
+      <workItem from="1705635224440" duration="23000" />
+      <workItem from="1705645700558" duration="1378000" />
+      <workItem from="1705676087286" duration="2359000" />
+      <workItem from="1705824457191" duration="938000" />
+      <workItem from="1705825437899" duration="13231000" />
+      <workItem from="1705909722483" duration="746000" />
+      <workItem from="1706365764872" duration="6267000" />
+      <workItem from="1706496154642" duration="5816000" />
+      <workItem from="1706502016641" duration="235000" />
+      <workItem from="1706514025984" duration="3406000" />
+      <workItem from="1706754567550" duration="7983000" />
+      <workItem from="1707620365410" duration="11404000" />
+      <workItem from="1708314329249" duration="12267000" />
+      <workItem from="1708436690862" duration="486000" />
+      <workItem from="1708437193310" duration="3599000" />
+      <workItem from="1708440983548" duration="4119000" />
+      <workItem from="1708445155506" duration="1767000" />
+      <workItem from="1708524553884" duration="8724000" />
+      <workItem from="1708941868160" duration="71000" />
+      <workItem from="1708942074812" duration="74000" />
+      <workItem from="1708950861672" duration="4102000" />
+      <workItem from="1708959958993" duration="23000" />
+      <workItem from="1708960561794" duration="104000" />
+      <workItem from="1709044702258" duration="58000" />
+      <workItem from="1709132551166" duration="26000" />
+      <workItem from="1709132599285" duration="2403000" />
+      <workItem from="1709286765059" duration="960000" />
+      <workItem from="1709302859084" duration="20000" />
+      <workItem from="1709467556597" duration="1396000" />
+      <workItem from="1710163536238" duration="2797000" />
+      <workItem from="1710320105736" duration="1129000" />
+      <workItem from="1711799877295" duration="12000" />
+      <workItem from="1711863630321" duration="3186000" />
+      <workItem from="1711896491744" duration="1737000" />
+      <workItem from="1711980803582" duration="2219000" />
+      <workItem from="1712032934347" duration="1161000" />
+      <workItem from="1712068643099" duration="2232000" />
+    </task>
+    <task id="LOCAL-00001" summary="1">
+      <option name="closed" value="true" />
+      <created>1705634241188</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705634241188</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Normal Update">
+      <option name="closed" value="true" />
+      <created>1705656301737</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705656301737</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Normal Update">
+      <option name="closed" value="true" />
+      <created>1705656604482</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705656604482</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Normal Update">
+      <option name="closed" value="true" />
+      <created>1705656881638</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705656881638</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Normal Update">
+      <option name="closed" value="true" />
+      <created>1705824588508</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705824588508</updated>
+    </task>
+    <task id="LOCAL-00006" summary="完成了UI的基本设计">
+      <option name="closed" value="true" />
+      <created>1705827551015</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705827551015</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Useless Update">
+      <option name="closed" value="true" />
+      <created>1705828352307</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705828352307</updated>
+    </task>
+    <task id="LOCAL-00008" summary="完成了图片显示功能">
+      <option name="closed" value="true" />
+      <created>1705839655157</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1705839655157</updated>
+    </task>
+    <task id="LOCAL-00009" summary="完成了图片显示功能">
+      <option name="closed" value="true" />
+      <created>1705844175604</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705844175604</updated>
+    </task>
+    <task id="LOCAL-00010" summary="完成了整个UI">
+      <option name="closed" value="true" />
+      <created>1705845026027</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705845026027</updated>
+    </task>
+    <task id="LOCAL-00011" summary="将指标参数由Text更换为Lable">
+      <option name="closed" value="true" />
+      <created>1705846126622</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705846126622</updated>
+    </task>
+    <task id="LOCAL-00012" summary="将指标参数由Text更换为Lable">
+      <option name="closed" value="true" />
+      <created>1706366001063</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706366001063</updated>
+    </task>
+    <task id="LOCAL-00013" summary="将指标参数由Text更换为Lable">
+      <option name="closed" value="true" />
+      <created>1706367225425</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706367225425</updated>
+    </task>
+    <task id="LOCAL-00014" summary="完成了对应lab与形参的获取，正在研究怎么嵌入图像">
+      <option name="closed" value="true" />
+      <created>1706372004428</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706372004428</updated>
+    </task>
+    <task id="LOCAL-00015" summary="icgetin左侧图像嵌入完成">
+      <option name="closed" value="true" />
+      <created>1706502067466</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1706502067466</updated>
+    </task>
+    <task id="LOCAL-00016" summary="绘制了三个窗口">
+      <option name="closed" value="true" />
+      <created>1706516104856</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1706516104856</updated>
+    </task>
+    <task id="LOCAL-00017" summary="常规更新">
+      <option name="closed" value="true" />
+      <created>1706755823261</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1706755823261</updated>
+    </task>
+    <task id="LOCAL-00018" summary="完成了后面的选择，现在只剩下模型的调用了，改天研究。之后请运行main文件">
+      <option name="closed" value="true" />
+      <created>1706772565324</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1706772565324</updated>
+    </task>
+    <task id="LOCAL-00019" summary="完成了模型训练">
+      <option name="closed" value="true" />
+      <created>1707627803559</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1707627803559</updated>
+    </task>
+    <task id="LOCAL-00020" summary="完成了模型训练">
+      <option name="closed" value="true" />
+      <created>1707627836048</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1707627836048</updated>
+    </task>
+    <task id="LOCAL-00021" summary="完成了模型训练 增加了状态栏">
+      <option name="closed" value="true" />
+      <created>1707631754608</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1707631754608</updated>
+    </task>
+    <task id="LOCAL-00022" summary="完成预测模块">
+      <option name="closed" value="true" />
+      <created>1708319774868</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1708319774868</updated>
+    </task>
+    <task id="LOCAL-00023" summary="完成测试模块">
+      <option name="closed" value="true" />
+      <created>1708323547972</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1708323547972</updated>
+    </task>
+    <task id="LOCAL-00024" summary="IC模块完成">
+      <option name="closed" value="true" />
+      <created>1708325483902</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1708325483902</updated>
+    </task>
+    <task id="LOCAL-00025" summary="换了个皮肤">
+      <option name="closed" value="true" />
+      <created>1708438569249</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1708438569249</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Final">
+      <option name="closed" value="true" />
+      <created>1708951000003</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1708951000003</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Final">
+      <option name="closed" value="true" />
+      <created>1709134344368</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1709134344368</updated>
+    </task>
+    <task id="LOCAL-00028" summary="icbug真修完了">
+      <option name="closed" value="true" />
+      <created>1710165719540</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1710165719540</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="zein_dev" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <MESSAGE value="Normal Update" />
+    <MESSAGE value="完成了UI的基本设计" />
+    <MESSAGE value="Useless Update" />
+    <MESSAGE value="完成了图片显示功能" />
+    <MESSAGE value="完成了整个UI" />
+    <MESSAGE value="将指标参数由Text更换为Lable" />
+    <MESSAGE value="完成了对应lab与形参的获取，正在研究怎么嵌入图像" />
+    <MESSAGE value="icgetin左侧图像嵌入完成" />
+    <MESSAGE value="绘制了三个窗口" />
+    <MESSAGE value="常规更新" />
+    <MESSAGE value="完成了后面的选择，现在只剩下模型的调用了，改天研究。之后请运行main文件" />
+    <MESSAGE value="完成了模型训练" />
+    <MESSAGE value="完成了模型训练 增加了状态栏" />
+    <MESSAGE value="完成预测模块" />
+    <MESSAGE value="完成测试模块" />
+    <MESSAGE value="IC模块完成" />
+    <MESSAGE value="换了个皮肤" />
+    <MESSAGE value="Final" />
+    <MESSAGE value="icbug真修完了" />
+    <option name="LAST_COMMIT_MESSAGE" value="icbug真修完了" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Infer.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ic_model.py</url>
+          <line>250</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Licon$main__1_.coverage" NAME="main (1) 覆盖结果" MODIFIED="1706772264333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$ic_getin.coverage" NAME="ic_getin 覆盖结果" MODIFIED="1706497579236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$definition.coverage" NAME="definition 覆盖结果" MODIFIED="1706367613527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$plotter.coverage" NAME="plotter 覆盖结果" MODIFIED="1708529219377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$SOH_main.coverage" NAME="SOH_main 覆盖结果" MODIFIED="1710164790745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$licon.coverage" NAME="licon 覆盖结果" MODIFIED="1705840358512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$ic_model.coverage" NAME="ic_model 覆盖结果" MODIFIED="1707622974352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$main.coverage" NAME="main 覆盖结果" MODIFIED="1711871439870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$def.coverage" NAME="def 覆盖结果" MODIFIED="1705837290665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$Infer.coverage" NAME="Infer 覆盖结果" MODIFIED="1706370001500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$untitled.coverage" NAME="untitled 覆盖结果" MODIFIED="1707626358742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$fluent_licon.coverage" NAME="fluent_licon 覆盖结果" MODIFIED="1706366860083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$mainwindow.coverage" NAME="mainwindow 覆盖结果" MODIFIED="1706370870986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$main_.coverage" NAME="main 覆盖结果" MODIFIED="1706772328236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$name.coverage" NAME="name 覆盖结果" MODIFIED="1705594911897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$scr.coverage" NAME="scr 覆盖结果" MODIFIED="1705839601222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$licon_milti.coverage" NAME="licon_milti 覆盖结果" MODIFIED="1708529223813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Licon$Licon.coverage" NAME="Licon 覆盖结果" MODIFIED="1705566683005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
