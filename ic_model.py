@@ -224,8 +224,7 @@ class BasicBlock(nn.Module):
         super(BasicBlock, self).__init__()
         # 维度不变
         self.conv1 = conv3x1(inplanes, planes, stride)
-        self.bn1 = nn.BatchNorm1d(planes)
-        track_running_stats = True
+        self.bn1 = nn.BatchNorm1d(planes, track_running_stats = True)
         self.conv2 = conv3x1(planes, planes)
         self.bn2 = nn.BatchNorm1d(planes)
         self.relu = nn.ReLU(inplace=True)
@@ -258,8 +257,7 @@ class ResNet(nn.Module):
         n = 1
         block = BasicBlock
         self.conv1 = nn.Conv1d(1, self.inplanes, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn1 = nn.BatchNorm1d(self.inplanes)
-        track_running_stats = True
+        self.bn1 = nn.BatchNorm1d(self.inplanes, track_running_stats = True)
         self.relu = nn.ReLU(inplace=True)
         self.layer1 = self._make_layer(block, 16, n)
         self.layer2 = self._make_layer(block, 32, n, stride=2)
@@ -403,7 +401,7 @@ def trainloss(model, train_loader, criterion, optimizer, scheduler, device, epoc
 
 # 验证集loss函数
 def valiloss(model, val_loader, criterion, device):
-    #model.eval()
+    model.eval()
     vali_loss = 0.0
     with torch.no_grad():
         for data, target in val_loader:
@@ -551,7 +549,7 @@ def model_test(test_model_path, test_parameter_path, data_formate, v_data, ic_da
     model.load_state_dict(torch.load(test_model_path))
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     model.to(device)
-    #model.eval()
+    model.eval()
     predict = []
     with torch.no_grad():
         for cycle in range(len(v_data)):
@@ -669,7 +667,7 @@ def model_predict(test_model_path, test_parameter_path, data_formate, v_data, ou
     model.load_state_dict(torch.load(test_model_path))
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     model.to(device)
-    #model.eval()
+    model.eval()
     predict = []
     with torch.no_grad():
         for cycle in range(len(v_data)):

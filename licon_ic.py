@@ -942,18 +942,18 @@ class NewWindow(QtWidgets.QMainWindow):
             central_widget.setLayout(layout)
             self.setCentralWidget(central_widget)
             # 重定向标准输出和标准错误到 console
-#             sys.stdout = ConsoleRedirect(self.console, sys.stdout)
-#             sys.stderr = ConsoleRedirect(self.console, sys.stderr)
-#
-# class ConsoleRedirect:
-#         def __init__(self, console, stream):
-#             self.console = console
-#             self.stream = stream
-#
-#         def write(self, text):
-#             # 将文本写入到 console
-#             self.console.insertPlainText(text)
-#
-#         def flush(self):
-#             # 刷新 console
-#             pass
+            sys.stdout = ConsoleRedirect(self.console, sys.stdout)
+            sys.stderr = ConsoleRedirect(self.console, sys.stderr)
+
+class ConsoleRedirect:
+        def __init__(self, console, stream):
+            self.console = console
+            self.stream = stream
+
+        def write(self, text):
+            # 将文本写入到 console
+            self.console.insertPlainText(text)
+
+        def flush(self):
+            # 刷新 console
+            pass

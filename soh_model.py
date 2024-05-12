@@ -194,7 +194,7 @@ def soh_model_test(test_model_path, test_parameter_path, data_formate, v_data, s
     model.load_state_dict(torch.load(test_model_path))
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     model.to(device)
-    #model.eval()
+    model.eval()
     predict = []
     with torch.no_grad():
         for cycle in range(len(v_data)):
@@ -303,7 +303,7 @@ def soh_model_predict(test_model_path, test_parameter_path, data_formate, v_data
     model.load_state_dict(torch.load(test_model_path))
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     model.to(device)
-    ##model.eval()
+    model.eval()
     predict = []
     with torch.no_grad():
         for cycle in range(len(v_data)):

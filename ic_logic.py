@@ -442,7 +442,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         ]
         if all(self.v_path and self.ic_path and self.model_import_path and self.param_import_path and not variable.empty
                for variable in [self.v_data, self.ic_data]):
-            # try:
+            try:
                 # self.status_label.setText("开始预测")
                 results, MAE, RMSE, num_classes, ground, predict = ic_model.test_model_wrapper(self.model_import_path,
                                                                                                self.param_import_path,
@@ -523,9 +523,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.label_MAE.setText(a)
                 a = str(results.get('R2', "null"))
                 self.label_R.setText(a)
-            # except Exception as e:
-            #     # 捕获异常并显示错误消息
-            #     QMessageBox.critical(self, '出错啦', str(e))
+            except Exception as e:
+                # 捕获异常并显示错误消息
+                QMessageBox.critical(self, '出错啦', str(e))
 
         else:
             self.lackdata()
