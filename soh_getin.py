@@ -14,7 +14,7 @@ from matplotlib.colors import Normalize
 #soh_getin_predict用于加载训练数据输入
 def soh_getin (data_formate,v_path,capacity_path,nominal_capacity,eol):
     #包含两个数据的预览图
-    if data_formate =='Txt':
+    if data_formate =='TXT':
         capacity_data = np.genfromtxt(capacity_path, delimiter=',')
         capacity_data = np.delete(capacity_data, -1, axis=1)  # ic数值为单位C/V或者mAh/V
         soh_data = (capacity_data-eol) / (nominal_capacity-eol)*100
@@ -107,7 +107,7 @@ def soh_getin (data_formate,v_path,capacity_path,nominal_capacity,eol):
 #soh_getin_predict用于加载预测数据输入
 def soh_getin_predict (data_formate,v_path):
     #包含一个数据的预览图
-    if data_formate =='Txt':
+    if data_formate =='TXT':
         v_data = []
         with open(v_path, 'r') as file:
             v_data = file.readlines()

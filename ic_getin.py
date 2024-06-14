@@ -13,7 +13,7 @@ from scipy.signal import find_peaks
 
 def ic_getin (data_formate,v_path,ic_path):
     #包含两个数据的预览图
-    if data_formate =='Txt':
+    if data_formate =='TXT':
         ic_data = np.genfromtxt(ic_path, delimiter=',')
         ic_data = np.delete(ic_data, -1, axis=1)  # ic数值为单位C/V或者mAh/V
         output_size= ic_data.shape[1]
@@ -112,7 +112,7 @@ def ic_getin_predict (data_formate,v_path):
     v_data = None
     cycle_num = None
     #包含一个数据的预览图
-    if data_formate =='Txt':
+    if data_formate =='TXT':
         v_data = []
         with open(v_path, 'r') as file:
             v_data = file.readlines()

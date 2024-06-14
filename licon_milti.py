@@ -1653,7 +1653,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "基于短时间充电数据的锂电池健康状态及老化机制智能分析平台"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "基于短时间充电数据的锂电池健康状态及老化机制智能量化平台"))
         self.groupBox_2.setTitle(_translate("MainWindow", "输入数据预览"))
         self.groupBox.setTitle(_translate("MainWindow", "输出数据预览"))
         self.filebutton_2.setText(_translate("MainWindow", "..."))
@@ -1787,9 +1787,10 @@ class NewWindow(QtWidgets.QMainWindow):
         central_widget = QtWidgets.QWidget()
         central_widget.setLayout(layout)
         self.setCentralWidget(central_widget)
+
         # 重定向标准输出和标准错误到 console
-        sys.stdout = ConsoleRedirect(self.console, sys.stdout)
-        sys.stderr = ConsoleRedirect(self.console, sys.stderr)
+        # sys.stdout = ConsoleRedirect(self.console, sys.stdout)
+        # sys.stderr = ConsoleRedirect(self.console, sys.stderr)
 
 class ConsoleRedirect:
     def __init__(self, console, stream):

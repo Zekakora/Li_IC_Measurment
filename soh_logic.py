@@ -231,7 +231,7 @@ class sohMainWindow(QWidget, Ui_Form):
         Fdown = MyFigure(width=6, height=4, dpi=100)
 
         # 包含两个数据的预览图
-        if data_format == 'Txt':
+        if data_format == 'TXT':
             ic_data = np.genfromtxt(ic_path, delimiter=',')
             ic_data = np.delete(ic_data, -1, axis=1)  # ic数值为单位C/V或者mAh/V
             output_size = ic_data.shape[1]
@@ -264,28 +264,17 @@ class sohMainWindow(QWidget, Ui_Form):
             Fup.set_title('Q-V data preview')
             Fup.set_xlabel('Point index')
             Fup.set_ylabel('Voltage (V)')
-            Fup.show()
-
             self.canvas.draw()
 
             ##Output_figure,IC的图像
             Fdown = self.icindown.add_subplot(111)
             fig, ax = plt.subplots()
-            norm = Normalize(vmin=soh_data.min(), vmax=soh_data.max())
-            cmap = plt.get_cmap('seismic')
-            # 创建ScalarMappable对象
-            sm = ScalarMappable(cmap=cmap, norm=norm)
-            sm.set_array([])  # 只是为了满足colorbar的需要
-            # 绘制线，颜色随soh值变化
-            for i in range(cycle_num - 1):
-                plt.plot(range(1, cycle_num + 1)[i:i + 2], soh_data[i:i + 2], color=sm.to_rgba(soh_data[i]))
-            # 添加colorbar
-            cbar = plt.colorbar(sm, ax=ax, orientation='vertical')
-            cbar.set_label('SOH value')
-            Fdown.set_title('SOH data preview')
-            Fdown.set_xlabel('cycle index')
-            Fdown.set_ylabel('SOH (%)')
-
+            for cycle in plot_cycle:
+                Fdown.plot(range(len(ic_data[cycle])), ic_data[cycle] / 3600, color=plt.cm.viridis(cycle / cycle_num))
+            # Fdown.plt.colorbar(plt.cm.ScalarMappable(cmap='viridis', norm=plt.Normalize(0, cycle_num)), ax=ax, label='Cycles',ticks=plot_cycle)
+            Fdown.set_title('IC data preview')
+            Fdown.set_xlabel('Point index')
+            Fdown.set_ylabel('Incremental Capacity (Ah/V)')
             self.icindown.tight_layout()
             self.canvas_1.draw()
 

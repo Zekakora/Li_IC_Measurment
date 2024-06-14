@@ -554,7 +554,7 @@ def model_test(test_model_path, test_parameter_path, data_formate, v_data, ic_da
     with torch.no_grad():
         for cycle in range(len(v_data)):
             # 构造滑动窗口
-            if data_formate == 'Txt':
+            if data_formate == 'TXT':
                 input = txt_prepare_test(v_data[cycle], window_size, v_mean, v_std)
             elif data_formate == 'Excel':
                 v_temp = [value for value in v_data.iloc[cycle, :] if pd.notna(value)]
@@ -672,7 +672,7 @@ def model_predict(test_model_path, test_parameter_path, data_formate, v_data, ou
     with torch.no_grad():
         for cycle in range(len(v_data)):
             # 构造滑动窗口
-            if data_formate == 'Txt':
+            if data_formate == 'TXT':
                 input = txt_prepare_test(v_data[cycle], window_size, v_mean, v_std)
             elif data_formate == 'Excel':
                 v_temp = [value for value in v_data.iloc[cycle, :] if pd.notna(value)]
@@ -685,7 +685,7 @@ def model_predict(test_model_path, test_parameter_path, data_formate, v_data, ou
             predict.append(np.ceil(output.cpu().detach().numpy()))
     predict = np.array(predict) / 3600
     # 存储预测得到的数据
-    if data_formate == 'Txt':
+    if data_formate == 'TXT':
         np.savetxt(output_path + '/predict.txt', predict, delimiter=",")
     elif data_formate == 'Excel':
         output_path = output_path + '/predict.xlsx'

@@ -199,7 +199,7 @@ def soh_model_test(test_model_path, test_parameter_path, data_formate, v_data, s
     with torch.no_grad():
         for cycle in range(len(v_data)):
             # 构造滑动窗口
-            if data_formate == 'Txt':
+            if data_formate == 'TXT':
                 input = txt_prepare_test(v_data[cycle], window_size, v_mean, v_std)
             elif data_formate == 'Excel':
                 v_temp = [value for value in v_data.iloc[cycle, :] if pd.notna(value)]
@@ -308,7 +308,7 @@ def soh_model_predict(test_model_path, test_parameter_path, data_formate, v_data
     with torch.no_grad():
         for cycle in range(len(v_data)):
             # 构造滑动窗口
-            if data_formate == 'Txt':
+            if data_formate == 'TXT':
                 input = txt_prepare_test(v_data[cycle], window_size, v_mean, v_std)
             elif data_formate == 'Excel':
                 v_temp = [value for value in v_data.iloc[cycle, :] if pd.notna(value)]
@@ -321,7 +321,7 @@ def soh_model_predict(test_model_path, test_parameter_path, data_formate, v_data
             predict.append(np.ceil(output.cpu().detach().numpy()))
     predict = np.array(predict)
     #存储预测得到的数据
-    if data_formate == 'Txt':
+    if data_formate == 'TXT':
         np.savetxt(output_path + '/predict.txt', predict, delimiter=",")
     elif data_formate == 'Excel':
         pd.DataFrame(predict).to_excel(output_path + '/predict.xlsx', index=False, header=False)

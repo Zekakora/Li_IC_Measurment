@@ -230,7 +230,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Fup = MyFigure(width=6, height=4, dpi=100)
         Fdown = MyFigure(width=6, height=4, dpi=100)
         # 包含两个数据的预览图
-        if data_format == 'Txt':
+        if data_format == 'TXT':
             ic_data = np.genfromtxt(ic_path, delimiter=',')
             ic_data = np.delete(ic_data, -1, axis=1)  # ic数值为单位C/V或者mAh/V
             output_size = ic_data.shape[1]
@@ -253,22 +253,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             Fup.set_title('Q-V data preview')
             Fup.set_xlabel('Point index')
             Fup.set_ylabel('Voltage (V)')
-            Fup.show()
-
             self.canvas.draw()
 
             ##Output_figure,IC的图像
             Fdown = self.icindown.add_subplot(111)
             fig, ax = plt.subplots()
             for cycle in plot_cycle:
-                plt.plot(range(len(ic_data[cycle])), ic_data[cycle] / 3600, color=plt.cm.viridis(cycle / cycle_num))
+                Fdown.plot(range(len(ic_data[cycle])), ic_data[cycle] / 3600, color=plt.cm.viridis(cycle / cycle_num))
             # Fdown.plt.colorbar(plt.cm.ScalarMappable(cmap='viridis', norm=plt.Normalize(0, cycle_num)), ax=ax, label='Cycles',ticks=plot_cycle)
             Fdown.set_title('IC data preview')
             Fdown.set_xlabel('Point index')
             Fdown.set_ylabel('Incremental Capacity (Ah/V)')
-
             self.icindown.tight_layout()
             self.canvas_1.draw()
+
             # 判断老化机制,使用一个输出框判断
             peak_data = ic_data[0]
             peaks, _ = find_peaks(abs(peak_data), height=-6 * 3600, threshold=0.1 * 3600)
