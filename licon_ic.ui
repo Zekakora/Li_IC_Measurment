@@ -167,7 +167,7 @@
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>微软雅黑</family>
                 <pointsize>10</pointsize>
                 <bold>false</bold>
                </font>
@@ -416,7 +416,7 @@
             <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
-              <height>20</height>
+              <height>5</height>
              </size>
             </property>
            </spacer>
@@ -449,7 +449,7 @@
             <property name="sizeHint" stdset="0">
              <size>
               <width>40</width>
-              <height>20</height>
+              <height>5</height>
              </size>
             </property>
            </spacer>
@@ -607,7 +607,7 @@
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>微软雅黑</family>
                 <pointsize>10</pointsize>
                 <bold>false</bold>
                </font>
@@ -968,13 +968,14 @@
               <property name="maximumSize">
                <size>
                 <width>9000000</width>
-                <height>30</height>
+                <height>40</height>
                </size>
               </property>
               <property name="font">
                <font>
                 <family>微软雅黑</family>
-                <bold>true</bold>
+                <pointsize>10</pointsize>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">

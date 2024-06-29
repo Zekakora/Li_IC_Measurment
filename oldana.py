@@ -147,6 +147,8 @@ class Ui_Old(object):
         font.setPointSize(12)
         font.setBold(False)
         self.label_3.setFont(font)
+        self.label_3.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.label_3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_3.setObjectName("label_3")
         self.verticalLayout_3.addWidget(self.label_3)
         spacerItem3 = QtWidgets.QSpacerItem(20, 5, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
