@@ -21,6 +21,8 @@
        <property name="font">
         <font>
          <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
@@ -63,6 +65,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
         </widget>
@@ -78,6 +81,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -96,6 +100,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -114,6 +119,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <item>
@@ -139,6 +145,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -151,8 +158,14 @@
          <property name="maximumSize">
           <size>
            <width>30</width>
-           <height>16777215</height>
+           <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>10</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>...</string>
@@ -164,6 +177,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>12</pointsize>
            <bold>true</bold>
           </font>
          </property>
@@ -186,6 +200,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -204,6 +219,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
         </widget>
@@ -213,8 +229,14 @@
          <property name="maximumSize">
           <size>
            <width>30</width>
-           <height>16777215</height>
+           <height>40</height>
           </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>10</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>...</string>
@@ -268,6 +290,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
          <property name="text">
@@ -286,6 +309,7 @@
          <property name="font">
           <font>
            <family>微软雅黑</family>
+           <pointsize>10</pointsize>
           </font>
          </property>
         </widget>
@@ -301,6 +325,8 @@
        <property name="font">
         <font>
          <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <bold>false</bold>
         </font>
        </property>
        <property name="text">
