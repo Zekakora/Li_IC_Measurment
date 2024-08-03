@@ -24,10 +24,13 @@ class oldMainWindow(QWidget, Ui_Old):
 
         self.indata = Figure(figsize=(1000, 300), dpi=70)
         self.indata.patch.set_facecolor('none')
+        self.indata.patch.set_alpha(0)
 
         self.lamd = Figure(figsize=(1000, 300), dpi=70)
         self.lamd.patch.set_facecolor('none')
+
         self.can_indata = FigureCanvas(self.indata)
+
         self.can_lam = FigureCanvas(self.lamd)
 
         self.verticalLayout.addWidget(self.can_indata)
@@ -39,7 +42,6 @@ class oldMainWindow(QWidget, Ui_Old):
         self.analyse.clicked.connect(self.olny_function)
 
         self.pushButton.clicked.connect(self.deletepic)
-
     def olny_function(self):
         dataformat = self.format.currentText()
         ic_path = self.path_1.text()

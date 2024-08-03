@@ -17,6 +17,7 @@ from scipy.signal import find_peaks
 
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
 import ic_model, ic_getin
@@ -156,16 +157,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 输入数据绘图
         self.gridlayout_inup = QGridLayout(self.groupBox_2)
         self.gridlayout_indown = QGridLayout(self.groupBox)
+        self.groupBox.setStyleSheet("QGroupBox { background-color: transparent; border: 1px solid gray; }")
 
         self.icinup = plt.figure()
+        self.icinup.patch.set_alpha(0)
         self.icindown = plt.figure()
+        self.icindown.patch.set_alpha(0)
 
         self.canvas = FigureCanvas(self.icinup)
         self.canvas_1 = FigureCanvas(self.icindown)
 
+        self.toolbar_canva = NavigationToolbar(self.canvas, self)
+        self.toolbar_canva_1 = NavigationToolbar(self.canvas_1, self)
+
         # 将 FigureCanvas 添加到第一个 Group Box 的布局中
+        self.gridlayout_inup.addWidget(self.toolbar_canva)
         self.gridlayout_inup.addWidget(self.canvas)
         # 将 FigureCanvas 添加到第二个 Group Box 的布局中
+        self.gridlayout_indown.addWidget(self.toolbar_canva_1)
         self.gridlayout_indown.addWidget(self.canvas_1)
         # self.pushButton.clicked.connect(self.ic_getin_ref)
 

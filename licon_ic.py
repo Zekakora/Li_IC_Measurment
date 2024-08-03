@@ -21,6 +21,13 @@ from qdarkstyle.light.palette import LightPalette
 # the default system in qdarkstyle uses qtpy environment variable
 app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='PyQt5', palette=LightPalette()))
 
+app.setStyleSheet("""
+    QMainWindow {
+        background-image: url('background.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+""")
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         icon = QIcon()
@@ -28,7 +35,8 @@ class Ui_MainWindow(object):
         self.setWindowIcon(icon)
 
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1600, 767)
+        MainWindow.resize(1700, 720)
+
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
