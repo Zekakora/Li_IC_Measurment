@@ -33,6 +33,8 @@ from qdarkstyle.light.palette import LightPalette
 #     'font_size': '24',
 # }
 
+# QPlainTextEdit, QLineEdit, QTextEdit,
+
 app.setStyleSheet("""
     /* 设置主窗口背景图片 */
     QMainWindow {
@@ -42,7 +44,7 @@ app.setStyleSheet("""
     }
 
     /* 输入框和按钮的样式 */
-    QPlainTextEdit, QComboBox, QLineEdit, QTextEdit, QPushButton {
+    QComboBox, QPushButton {
         background: white;
         border: 1px solid #ccc;
         border-radius: 4px; /* 圆角边框 */
@@ -108,13 +110,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.LOGO = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.LOGO.sizePolicy().hasHeightForWidth())
         self.LOGO.setSizePolicy(sizePolicy)
-        self.LOGO.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.LOGO.setMaximumSize(QtCore.QSize(16777215, 70))
         self.LOGO.setText("")
+       # self.LOGO.setAlignment(QtCore.Qt.AlignRight)
         self.LOGO.setObjectName("LOGO")
         self.verticalLayout_6.addWidget(self.LOGO)
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)

@@ -20,25 +20,69 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_6">
+   <layout class="QVBoxLayout" name="verticalLayout_6" stretch="1,10">
     <item>
-     <widget class="QLabel" name="LOGO">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>60</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="IC">
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>IC曲线分析</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="SOH">
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>SOH曲线分析</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="OLD">
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>电池老化分析</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="CONSL">
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>控制台</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="LOGO">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
@@ -1672,64 +1716,6 @@
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1200</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_1">
-    <property name="font">
-     <font>
-      <family>微软雅黑</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string>IC曲线</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_3">
-    <property name="font">
-     <font>
-      <family>微软雅黑</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string>电池老化分析</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_2">
-    <property name="font">
-     <font>
-      <family>微软雅黑</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string>SOH曲线</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_4">
-    <property name="font">
-     <font>
-      <family>微软雅黑</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="title">
-     <string>控制台</string>
-    </property>
-   </widget>
-   <addaction name="menu_1"/>
-   <addaction name="menu_2"/>
-   <addaction name="menu_3"/>
-   <addaction name="menu_4"/>
   </widget>
  </widget>
  <resources/>
