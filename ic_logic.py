@@ -115,6 +115,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.oldpage = oldMainWindow()
         self.stackedWidget.addWidget(self.oldpage)
 
+        # SCU LOGO
+        sculogo = QPixmap('logonow.png')
+        self.LOGO.setPixmap(sculogo)
+
 
         # 选项框内容定义区
         # self.data_format = self.comboBox.currentText()
@@ -160,12 +164,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.groupBox.setStyleSheet("QGroupBox { background-color: transparent; border: 1px solid gray; }")
 
         self.icinup = plt.figure()
-        self.icinup.patch.set_alpha(0)
+        self.icinup.patch.set_facecolor('none')
         self.icindown = plt.figure()
-        self.icindown.patch.set_alpha(0)
+        self.icindown.patch.set_facecolor('none')
+        self.icinup.clf()
+        self.icindown.clf()
 
         self.canvas = FigureCanvas(self.icinup)
         self.canvas_1 = FigureCanvas(self.icindown)
+        self.canvas.draw()
+        self.canvas_1.draw()
 
         self.toolbar_canva = NavigationToolbar(self.canvas, self)
         self.toolbar_canva_1 = NavigationToolbar(self.canvas_1, self)
@@ -181,6 +189,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # loss图绘制
         self.icloss = Figure(figsize=(5, 4), dpi=100)
         self.canvas_loss = FigureCanvas(self.icloss)
+        self.icloss.patch.set_facecolor('none')
+        self.toolbar_loss = NavigationToolbar(self.canvas_loss, self)
+        self.verticalLayout.addWidget(self.toolbar_loss)
         self.verticalLayout.addWidget(self.canvas_loss)
 
         # MAE
@@ -188,8 +199,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mae_rmse1 = Figure(figsize=(2, 1.5), dpi=70)
         self.mae_rmse2 = Figure(figsize=(2, 1.5), dpi=70)
         self.mae_rmse3 = Figure(figsize=(2, 1.5), dpi=70)
+
+        self.mae_rmse.patch.set_facecolor('none')
+        self.mae_rmse1.patch.set_facecolor('none')
+        self.mae_rmse2.patch.set_facecolor('none')
+        self.mae_rmse3.patch.set_facecolor('none')
+
         self.canva_mae_best = FigureCanvas(self.mae_rmse)
         self.canva_mae_worst = FigureCanvas(self.mae_rmse1)
+        self.toolbar_mae = NavigationToolbar(self.canva_mae_best, self)
+
+        self.verticalLayout_8.addWidget(self.toolbar_mae)
+
         self.horizontalLayout_3.addWidget(self.canva_mae_best)
         self.horizontalLayout_3.addWidget(self.canva_mae_worst)
         self.canva_rmse_best = FigureCanvas(self.mae_rmse2)

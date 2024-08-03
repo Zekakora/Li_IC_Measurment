@@ -19,7 +19,7 @@ import qdarkstyle
 from qdarkstyle.light.palette import LightPalette
 # setup stylesheet
 # the default system in qdarkstyle uses qtpy environment variable
-app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='PyQt5', palette=LightPalette()))
+# app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='PyQt5', palette=LightPalette()))
 
 app.setStyleSheet("""
     QMainWindow {
@@ -44,8 +44,18 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.LOGO = QtWidgets.QLabel(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.LOGO.sizePolicy().hasHeightForWidth())
+        self.LOGO.setSizePolicy(sizePolicy)
+        self.LOGO.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.LOGO.setText("")
+        self.LOGO.setObjectName("LOGO")
+        self.verticalLayout_6.addWidget(self.LOGO)
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
@@ -889,7 +899,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setStretch(2, 3)
         self.horizontalLayout.setStretch(3, 6)
         self.stackedWidget.addWidget(self.page)
-        self.horizontalLayout_2.addWidget(self.stackedWidget)
+        self.verticalLayout_6.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1200, 22))
@@ -1042,8 +1052,8 @@ class NewWindow(QtWidgets.QMainWindow):
             self.setCentralWidget(central_widget)
 
             # 重定向标准输出和标准错误到 console
-            sys.stdout = ConsoleRedirect(self.console, sys.stdout)
-            sys.stderr = ConsoleRedirect(self.console, sys.stderr)
+            # sys.stdout = ConsoleRedirect(self.console, sys.stdout)
+            # sys.stderr = ConsoleRedirect(self.console, sys.stderr)
             font = QtGui.QFont()
             font.setFamily("微软雅黑")
             font.setPointSize(11)
@@ -1051,12 +1061,14 @@ class NewWindow(QtWidgets.QMainWindow):
 
 class ConsoleRedirect:
         def __init__(self, console, stream):
-            self.console = console
-            self.stream = stream
+            pass
+            # self.console = console
+            # self.stream = stream
 
         def write(self, text):
+            pass
             # 将文本写入到 console
-            self.console.insertPlainText(text)
+            # self.console.insertPlainText(text)
 
         def flush(self):
             # 刷新 console
