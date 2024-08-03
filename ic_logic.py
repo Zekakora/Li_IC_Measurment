@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import *
 import sys
 import os
 
+from PyQt5.uic.properties import QtWidgets, QtCore, QtGui
 
 import icons
 from licon_ic import Ui_MainWindow
@@ -154,6 +155,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.filebutton_8.clicked.connect(lambda: self.choosefile(8))
 
         self.pushButton_2.clicked.connect(self.clean)
+
+        self.IC.clicked.connect(self.gotoic)
+        self.SOH.clicked.connect(self.gotosoh)
+        self.OLD.clicked.connect(self.gotoold)
+        self.CONSL.clicked.connect(self.command)
 
         # 输入数据展示按钮
         self.pushButton.clicked.connect(self.ic_getin_ref)
@@ -690,6 +696,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         timer.start(1500)  # 3000毫秒后关闭消息框
 
         msg_box.exec_()
+
+    def gotoic(self):
+        self.stackedWidget.setCurrentIndex(0)
+
+    def gotosoh(self):
+        self.stackedWidget.setCurrentIndex(1)
+
+    def gotoold(self):
+        self.stackedWidget.setCurrentIndex(2)
+
+    def command(self):
+        if self.new_window.isHidden():
+            self.new_window.show()
+        else:
+            self.new_window.hide()
 
 
 if __name__ == "__main__":

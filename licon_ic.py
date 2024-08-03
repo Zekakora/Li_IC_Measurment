@@ -93,10 +93,6 @@ app.setStyleSheet("""
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        icon = QIcon()
-        icon.addPixmap(QtGui.QPixmap.fromImage(QtGui.QImage.fromData(base64.b64decode(icons.flower))))
-        self.setWindowIcon(icon)
-
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1700, 850)
 
@@ -109,17 +105,29 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.IC = QtWidgets.QPushButton(self.centralwidget)
+        self.IC.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.IC.setObjectName("IC")
+        self.horizontalLayout_2.addWidget(self.IC)
+        self.SOH = QtWidgets.QPushButton(self.centralwidget)
+        self.SOH.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.SOH.setObjectName("SOH")
+        self.horizontalLayout_2.addWidget(self.SOH)
+        self.OLD = QtWidgets.QPushButton(self.centralwidget)
+        self.OLD.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.OLD.setObjectName("OLD")
+        self.horizontalLayout_2.addWidget(self.OLD)
+        self.CONSL = QtWidgets.QPushButton(self.centralwidget)
+        self.CONSL.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.CONSL.setObjectName("CONSL")
+        self.horizontalLayout_2.addWidget(self.CONSL)
         self.LOGO = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.LOGO.sizePolicy().hasHeightForWidth())
-        self.LOGO.setSizePolicy(sizePolicy)
-        self.LOGO.setMaximumSize(QtCore.QSize(16777215, 70))
         self.LOGO.setText("")
-       # self.LOGO.setAlignment(QtCore.Qt.AlignRight)
         self.LOGO.setObjectName("LOGO")
-        self.verticalLayout_6.addWidget(self.LOGO)
+        self.horizontalLayout_2.addWidget(self.LOGO)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
@@ -965,75 +973,25 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setStretch(3, 6)
         self.stackedWidget.addWidget(self.page)
         self.verticalLayout_6.addWidget(self.stackedWidget)
+        self.verticalLayout_6.setStretch(0, 1)
+        self.verticalLayout_6.setStretch(1, 10)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1200, 22))
-        self.menubar.setObjectName("menubar")
-        self.menu_1 = QtWidgets.QMenu(self.menubar)
-        font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
-        self.menu_1.setFont(font)
-        self.menu_1.setObjectName("menu_1")
-        self.menu_3 = QtWidgets.QMenu(self.menubar)
-        font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
-        self.menu_3.setFont(font)
-        self.menu_3.setObjectName("menu_3")
-        self.menu_2 = QtWidgets.QMenu(self.menubar)
-        font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
-        self.menu_2.setFont(font)
-        self.menu_2.setObjectName("menu_2")
-        self.menu_4 = QtWidgets.QMenu(self.menubar)
-        font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
-        self.menu_4.setFont(font)
-        self.menu_4.setObjectName("menu_4")
-        MainWindow.setMenuBar(self.menubar)
-        self.menubar.addAction(self.menu_1.menuAction())
-        self.menubar.addAction(self.menu_2.menuAction())
-        self.menubar.addAction(self.menu_3.menuAction())
-        self.menubar.addAction(self.menu_4.menuAction())
 
-        self.action_1 = QtWidgets.QAction()
-        self.action_1.setObjectName('action_1')
-        self.menubar.addAction(self.action_1)
-        self.action_1.triggered.connect(self.gotoic)
-
-        self.action_2 = QtWidgets.QAction()
-        self.action_2.setObjectName('action_2')
-        self.menubar.addAction(self.action_2)
-        self.action_2.triggered.connect(self.gotosoh)
-
-        self.action_3 = QtWidgets.QAction()
-        self.action_3.setObjectName('action_3')
-        self.menubar.addAction(self.action_3)
-        self.action_3.triggered.connect(self.gotoold)
-
-        self.action_4 = QtWidgets.QAction()
-        self.action_4.setObjectName('action_4')
-        self.menubar.addAction(self.action_4)
-        self.action_4.triggered.connect(self.command)
+        self.retranslateUi(MainWindow)
+        self.stackedWidget.setCurrentIndex(0)
 
         self.new_window = NewWindow()  # 创建控制台窗口
         print("已知问题：控制台无法实时更新输出")
 
-        # self.status_label.setAlignment(Qt.AlignCenter)
-        self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
-
-
-        self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.IC.setText(_translate("MainWindow", "IC曲线分析"))
+        self.SOH.setText(_translate("MainWindow", "SOH曲线分析"))
+        self.OLD.setText(_translate("MainWindow", "电池老化分析"))
+        self.CONSL.setText(_translate("MainWindow", "控制台"))
         self.groupBox_2.setTitle(_translate("MainWindow", "输入数据预览"))
         self.groupBox.setTitle(_translate("MainWindow", "输出数据预览"))
         self.filebutton_2.setText(_translate("MainWindow", "..."))
@@ -1079,25 +1037,7 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "MAE："))
         self.label_11.setText(_translate("MainWindow", "MAE指标最优最差预测结果"))
         self.label_13.setText(_translate("MainWindow", "RMSE指标最优最差预测结果"))
-        self.action_1.setText(_translate("MainWindow", "IC分析"))
-        self.action_2.setText(_translate("MainWindow", "SOH分析"))
-        self.action_3.setText(_translate("MainWindow", "电池老化分析"))
-        self.action_4.setText(_translate("MainWindow", "控制台"))
 
-    def gotoic(self):
-        self.stackedWidget.setCurrentIndex(0)
-
-    def gotosoh(self):
-        self.stackedWidget.setCurrentIndex(1)
-
-    def gotoold(self):
-        self.stackedWidget.setCurrentIndex(2)
-
-    def command(self):
-        if self.new_window.isHidden():
-            self.new_window.show()
-        else:
-            self.new_window.hide()
 
 class NewWindow(QtWidgets.QMainWindow):
         def __init__(self):
