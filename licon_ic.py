@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from qdarkstyle import DarkPalette
 
 # Form implementation generated from reading ui file 'licon_ic.ui'
 #
@@ -19,15 +20,75 @@ import qdarkstyle
 from qdarkstyle.light.palette import LightPalette
 # setup stylesheet
 # the default system in qdarkstyle uses qtpy environment variable
-# app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='PyQt5', palette=LightPalette()))
+
+
+# extra = {
+#     # Button colors
+#     'danger': '#dc3545',
+#     # 'warning': '#ffc107',
+#     'warning': '#CD9B1D',
+#     'success': '#17a2b8',
+#     # Font
+#     'font_family': ['等线','微软雅黑','楷体'],
+#     'font_size': '24',
+# }
 
 app.setStyleSheet("""
+    /* 设置主窗口背景图片 */
     QMainWindow {
         background-image: url('background.jpg');
         background-position: center;
         background-repeat: no-repeat;
     }
+
+    /* 输入框和按钮的样式 */
+    QPlainTextEdit, QComboBox, QLineEdit, QTextEdit, QPushButton {
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 4px; /* 圆角边框 */
+        padding: 5px;
+        opacity: 1;  /* 输入框不透明 */
+    }
+
+    /* 让所有控件的背景透明 */
+    QWidget {
+        background: transparent;
+        border: none;
+        padding: 5px;
+    }
+
+    /* 按钮的样式（可以增加一些特效） */
+    QPushButton {
+        background-color: #f0f0f0; /* 按钮背景色 */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px 12px; /* 按钮内边距 */
+        font-size: 14px; /* 字体大小 */
+    }
+
+    QPushButton:hover {
+        background-color: #e0e0e0; /* 鼠标悬停时的背景色 */
+    }
+
+    QPushButton:pressed {
+        background-color: #d0d0d0; /* 按钮按下时的背景色 */
+    }
+    
+    {
+        background: transparent;
+        border: none;
+        padding: 5px;
+    }
 """)
+
+
+
+# app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='PyQt5', palette=LightPalette()))
+# from qt_material import apply_stylesheet
+#
+# apply_stylesheet(app, theme='light_blue.xml', extra=extra)
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         icon = QIcon()
@@ -35,7 +96,7 @@ class Ui_MainWindow(object):
         self.setWindowIcon(icon)
 
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1700, 720)
+        MainWindow.resize(1700, 850)
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -438,6 +499,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setStretch(4, 4)
         self.horizontalLayout.addLayout(self.verticalLayout_2)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setContentsMargins(-1, -1, -1, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.gridLayout_7 = QtWidgets.QGridLayout()
         self.gridLayout_7.setObjectName("gridLayout_7")
@@ -754,7 +816,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addLayout(self.verticalLayout)
         self.verticalLayout_3.setStretch(0, 1)
         self.verticalLayout_3.setStretch(1, 1)
-        self.verticalLayout_3.setStretch(2, 9)
+        self.verticalLayout_3.setStretch(2, 20)
         self.horizontalLayout.addLayout(self.verticalLayout_3)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")

@@ -1618,10 +1618,10 @@
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+            <layout class="QVBoxLayout" name="verticalLayout_6"/>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5"/>
+            <layout class="QVBoxLayout" name="verticalLayout_7"/>
            </item>
           </layout>
          </item>

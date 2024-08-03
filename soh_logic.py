@@ -19,6 +19,7 @@ from scipy.signal import find_peaks
 
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
 # import icsoh, ic_getin
@@ -158,15 +159,22 @@ class sohMainWindow(QWidget, Ui_Form):
         self.canvas = FigureCanvas(self.icinup)
         self.canvas_1 = FigureCanvas(self.icindown)
 
+        self.toolbar_canva = NavigationToolbar(self.canvas, self)
+        self.toolbar_canva_1 = NavigationToolbar(self.canvas_1, self)
+
         # 将 FigureCanvas 添加到第一个 Group Box 的布局中
+        self.gridlayout_inup.addWidget(self.toolbar_canva)
         self.gridlayout_inup.addWidget(self.canvas)
         # 将 FigureCanvas 添加到第二个 Group Box 的布局中
+        self.gridlayout_indown.addWidget(self.toolbar_canva_1)
         self.gridlayout_indown.addWidget(self.canvas_1)
         # self.pushButton.clicked.connect(self.ic_getin_ref)
 
         # loss图绘制
         self.icloss = Figure(figsize=(5, 4), dpi=100)
         self.canvas_loss = FigureCanvas(self.icloss)
+        self.toolbar_loss = NavigationToolbar(self.canvas_loss, self)
+        self.verticalLayout.addWidget(self.toolbar_loss)
         self.verticalLayout.addWidget(self.canvas_loss)
 
         # # MAE
@@ -187,8 +195,14 @@ class sohMainWindow(QWidget, Ui_Form):
         self.truevspred = Figure(figsize=(5, 4), dpi=80)
         self.canva_gvp = FigureCanvas(self.groundvspred)
         self.canva_tvp = FigureCanvas(self.truevspred)
-        self.horizontalLayout_3.addWidget(self.canva_gvp)
-        self.horizontalLayout_5.addWidget(self.canva_tvp)
+
+        self.toolbar_gvp = NavigationToolbar(self.canva_gvp, self)
+        self.toolbar_tvp = NavigationToolbar(self.canva_tvp, self)
+        self.verticalLayout_6.addWidget(self.toolbar_gvp)
+        self.verticalLayout_6.addWidget(self.canva_gvp)
+
+        self.verticalLayout_7.addWidget(self.toolbar_tvp)
+        self.verticalLayout_7.addWidget(self.canva_tvp)
 
         # 模型训练窗口
         self.pushButton_3.clicked.connect(self.train_model)
@@ -197,6 +211,11 @@ class sohMainWindow(QWidget, Ui_Form):
         self.pushButton_4.clicked.connect(self.test_model)
         # 模型预测
         self.pushButton_5.clicked.connect(self.predict_model)
+        self.icloss.patch.set_facecolor('none')
+        self.icindown.patch.set_facecolor('none')
+        self.icinup.patch.set_facecolor('none')
+        self.groundvspred.patch.set_facecolor('none')
+        self.truevspred.patch.set_facecolor('none')
 
     def choosefile_old(self, index):
         fname, _ = QFileDialog.getOpenFileName(None, '选择文件')

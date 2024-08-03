@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
 
@@ -30,10 +31,14 @@ class oldMainWindow(QWidget, Ui_Old):
         self.lamd.patch.set_facecolor('none')
 
         self.can_indata = FigureCanvas(self.indata)
-
         self.can_lam = FigureCanvas(self.lamd)
 
+        self.toolbar_in = NavigationToolbar(self.can_indata, self)
+        self.toolbar_lam = NavigationToolbar(self.can_lam, self)
+
+        self.verticalLayout.addWidget(self.toolbar_in)
         self.verticalLayout.addWidget(self.can_indata)
+        self.verticalLayout_3.addWidget(self.toolbar_lam)
         self.verticalLayout_3.addWidget(self.can_lam)
 
         self.choose_1.clicked.connect(lambda: self.choosefile(1))
@@ -42,6 +47,7 @@ class oldMainWindow(QWidget, Ui_Old):
         self.analyse.clicked.connect(self.olny_function)
 
         self.pushButton.clicked.connect(self.deletepic)
+
     def olny_function(self):
         dataformat = self.format.currentText()
         ic_path = self.path_1.text()
