@@ -253,6 +253,7 @@ class sohMainWindow(QWidget, Ui_Form):
         if data_format == 'TXT':
             ic_data = np.genfromtxt(ic_path, delimiter=',')
             ic_data = np.delete(ic_data, -1, axis=1)  # ic数值为单位C/V或者mAh/V
+            soh_data = (ic_data - eol) / (nominal_capacity - eol) * 100
             output_size = ic_data.shape[1]
             v_data = []
             with open(v_path, 'r') as file:
@@ -260,15 +261,6 @@ class sohMainWindow(QWidget, Ui_Form):
             cycle_num = len(v_data)
             plot_cycle = range(0, cycle_num, int(cycle_num / 10))
 
-            ic_data = np.genfromtxt(ic_path, delimiter=',')
-            ic_data = np.delete(ic_data, -1, axis=1)  # ic数值为单位C/V或者mAh/V
-            soh_data = (ic_data - eol) / (nominal_capacity - eol) * 100
-            output_size = soh_data.shape[1]
-            v_data = []
-            with open(v_path, 'r') as file:
-                v_data = file.readlines()
-            cycle_num = len(v_data)
-            plot_cycle = range(0, cycle_num, int(cycle_num / 10))
 
             ##input_figure,Q_V的图像
             # plt.figure()
@@ -288,12 +280,17 @@ class sohMainWindow(QWidget, Ui_Form):
             ##Output_figure,IC的图像
             Fdown = self.icindown.add_subplot(111)
             fig, ax = plt.subplots()
-            for cycle in plot_cycle:
-                Fdown.plot(range(len(ic_data[cycle])), ic_data[cycle] / 3600, color=plt.cm.viridis(cycle / cycle_num))
+            norm = Normalize(vmin=soh_data.min(), vmax=soh_data.max())
+            cmap = plt.get_cmap('seismic')
+
+            sm = ScalarMappable(cmap=cmap, norm=norm)
+            sm.set_array([])  # 只是为了满足colorbar的需要
+            for i in range(cycle_num - 1):
+                Fdown.plot(range(1,cycle_num+1)[i:i + 2], soh_data[i:i + 2], color=sm.to_rgba(soh_data[i]))
             # Fdown.plt.colorbar(plt.cm.ScalarMappable(cmap='viridis', norm=plt.Normalize(0, cycle_num)), ax=ax, label='Cycles',ticks=plot_cycle)
-            Fdown.set_title('IC data preview')
-            Fdown.set_xlabel('Point index')
-            Fdown.set_ylabel('Incremental Capacity (Ah/V)')
+            Fdown.set_title('SOH data preview')
+            Fdown.set_xlabel('cycle index')
+            Fdown.set_ylabel('SOH (%)')
             self.icindown.tight_layout()
             self.canvas_1.draw()
 

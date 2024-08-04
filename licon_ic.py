@@ -38,11 +38,13 @@ from qdarkstyle.light.palette import LightPalette
 app.setStyleSheet("""
     /* 设置主窗口背景图片 */
     QMainWindow {
-        background-image: url('background.jpg');
+        background-image: url('src/background.jpg');
         background-position: center;
         background-repeat: no-repeat;
     }
-
+    QMessageBox { 
+        background-color: white; 
+        }
     /* 输入框和按钮的样式 */
     QComboBox, QPushButton {
         background: white;

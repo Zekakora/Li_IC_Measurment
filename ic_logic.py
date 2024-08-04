@@ -117,7 +117,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.addWidget(self.oldpage)
 
         # SCU LOGO
-        sculogo = QPixmap('logonow.png')
+        sculogo = QPixmap('src/logonow.png')
         self.LOGO.setPixmap(sculogo)
 
 
@@ -470,12 +470,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         variables = [
             self.v_path,
             self.ic_path,
-            self.data_format,
             self.param_import_path,
             self.model_import_path
         ]
-        if all(self.v_path and self.ic_path and self.model_import_path and self.param_import_path and not variable.empty
-               for variable in [self.v_data, self.ic_data]):
+        if (self.v_path and self.ic_path and self.model_import_path and self.param_import_path):
+               # for variable in [self.v_data, self.ic_data]):
             try:
                 # self.status_label.setText("开始预测")
                 results, MAE, RMSE, num_classes, ground, predict = ic_model.test_model_wrapper(self.model_import_path,
@@ -549,7 +548,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 rmse_best.legend()
                 self.canva_rmse_best.draw()
                 # rmse_best.cla()
-                self.status_label.setText("绘图完成")
+                # self.status_label.setText("绘图完成")
 
                 a = str(results.get('RMSE', "null"))
                 self.label_RMSE.setText(a)

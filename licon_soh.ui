@@ -400,7 +400,7 @@
               </font>
              </property>
              <property name="text">
-              <string>寿命终点(%)</string>
+              <string>寿命终点(%)：</string>
              </property>
             </widget>
            </item>
@@ -420,7 +420,7 @@
               </font>
              </property>
              <property name="text">
-              <string>标称容量(Ah)</string>
+              <string>标称容量(Ah)：</string>
              </property>
             </widget>
            </item>
@@ -819,7 +819,7 @@
               </font>
              </property>
              <property name="text">
-              <string>窗口大小</string>
+              <string>窗口大小：</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -1115,7 +1115,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Epoch数量</string>
+              <string>Epoch数量：</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -1144,7 +1144,7 @@
               </font>
              </property>
              <property name="text">
-              <string>训练集比例</string>
+              <string>训练集比例：</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -1254,7 +1254,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Batch_size</string>
+              <string>Batch_size：</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -1414,7 +1414,7 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,2,1,2,1,2">
+          <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,2,1,2,1,2">
            <property name="leftMargin">
             <number>2</number>
            </property>

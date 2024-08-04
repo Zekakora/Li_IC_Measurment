@@ -294,7 +294,7 @@
           </font>
          </property>
          <property name="text">
-          <string>初始循环IC峰值</string>
+          <string>初始循环IC峰值：</string>
          </property>
         </widget>
        </item>

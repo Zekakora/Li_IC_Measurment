@@ -52,10 +52,11 @@ class oldMainWindow(QWidget, Ui_Old):
         dataformat = self.format.currentText()
         ic_path = self.path_1.text()
         store_path = self.path_2.text()
-        icpeak = float(self.icpeak.text())
-        if(1):
+        icpeak = self.icpeak.text()
+        if(ic_path and store_path and icpeak):
             print("ok")
             try:
+                icpeak = float(self.icpeak.text())
                 self.indata.clf()
                 self.can_indata.draw()
 
@@ -67,8 +68,8 @@ class oldMainWindow(QWidget, Ui_Old):
                 # INPUT
                 INDATA = self.indata.add_subplot(111)
                 for cycle in plot_cycle:
-                    plot_ic = ic_data.iloc[cycle, :]
-                    INDATA.plot(range(len(plot_ic)), plot_ic / 3600, color=plt.cm.viridis(cycle / cycle_num))
+                    plot_ic = ic_data.iloc[cycle, :]    # plot_ic / 3600
+                    INDATA.plot(range(len(plot_ic)), plot_ic, color=plt.cm.viridis(cycle / cycle_num))
                     # INDATA.colorbar(INDATA.cm.ScalarMappable(cmap='viridis', norm=plt.Normalize(0, cycle_num)),ax=ax, label='Cycles',
                     #                ticks=plot_cycle)
                 INDATA.set_title('IC data preview')

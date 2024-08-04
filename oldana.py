@@ -174,5 +174,5 @@ class Ui_Old(object):
         self.label_6.setText(_translate("Old", "锂电池老化分析"))
         self.label_5.setText(_translate("Old", "量化分析结果储存路径"))
         self.choose_2.setText(_translate("Old", "..."))
-        self.label_4.setText(_translate("Old", "初始循环IC峰值"))
+        self.label_4.setText(_translate("Old", "初始循环IC峰值："))
         self.label_3.setText(_translate("Old", "LAM量化结果"))
