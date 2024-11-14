@@ -4,9 +4,9 @@ import numpy as np
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap, QIcon
 
-import icons
-from oldana import Ui_Old
-import oldana_import
+from src import icons
+from component.old.oldana import Ui_Old
+import component.old.oldana_import as oldana_import
 from PyQt5.QtWidgets import *
 
 import matplotlib

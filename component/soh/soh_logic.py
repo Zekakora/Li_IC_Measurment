@@ -3,19 +3,17 @@ import base64
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import *
-import sys
 import os
 
 from matplotlib.cm import ScalarMappable
 from matplotlib.colors import Normalize
 
-import icons
-from licon_soh import Ui_Form
+from src import icons
+from component.soh.licon_soh import Ui_Form
 import numpy as np
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
-from scipy.signal import find_peaks
 
 matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -23,8 +21,10 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 from matplotlib.figure import Figure
 
 # import icsoh, ic_getin
-import soh_getin, soh_model
-
+# import soh_getin, soh_model
+# import soh_getin, soh_model
+import component.soh.soh_model as soh_model
+import component.soh.soh_getin as soh_getin
 import re
 
 
@@ -35,66 +35,6 @@ def extract_number(filename):
         return int(match.group())
     else:
         return -1  # 如果找不到数字，则返回一个标记值
-
-
-'''打包需要添加命令 --hidden-import openpyxl.cell._writer'''
-# 需要更改的
-"""
-加载UI里面 23嗲用函数错了
-
-self.menu_1 = QtWidgets.QMenu(self.menubar)
-        self.menu_1.setObjectName("menu_1")
-
-        self.menu_3 = QtWidgets.QMenu(self.menubar)
-        self.menu_3.setObjectName("menu_3")
-
-        self.menu_2 = QtWidgets.QMenu(self.menubar)
-        self.menu_2.setObjectName("menu_2")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-
-        self.menubar.addAction(self.menu_1.menuAction())
-        self.menubar.addAction(self.menu_2.menuAction())
-        self.menubar.addAction(self.menu_3.menuAction())
-
-        self.action_1 = QtWidgets.QAction(self.statusbar)
-        self.action_1.setObjectName('action_1')
-        self.menubar.addAction(self.action_1)
-        self.action_1.triggered.connect(self.gotoic)
-
-        self.action_2 = QtWidgets.QAction(self.statusbar)
-        self.action_2.setObjectName('action_2')
-        self.menubar.addAction(self.action_2)
-        self.action_2.triggered.connect(self.gotoold)
-
-        self.action_3 = QtWidgets.QAction(self.statusbar)
-        self.action_3.setObjectName('action_3')
-        self.menubar.addAction(self.action_3)
-        self.action_3.triggered.connect(self.gotosoh)
-
-        
-
-加载translation里面 要把原来的菜单注释掉
-        # self.menu_1.setTitle(_translate("MainWindow", "IC曲线"))
-        # self.menu_3.setTitle(_translate("MainWindow", "电池老化分析"))
-        # self.menu_2.setTitle(_translate("MainWindow", "SOH曲线"))
-        self.action_1.setText(_translate("MainWindow", "IC分析"))
-        self.action_2.setText(_translate("MainWindow", "SOH分析"))
-        self.action_3.setText(_translate("MainWindow", "电池老化分析"))
-        
-函数
-    def gotoic(self):
-        self.stackedWidget.setCurrentIndex(0)
-
-    def gotosoh(self):
-        self.stackedWidget.setCurrentIndex(1)
-
-    def gotoold(self):
-        self.stackedWidget.setCurrentIndex(2)
-"""
-
 
 class MyFigure(FigureCanvas):
     def __init__(self, width=5, height=4, dpi=100):

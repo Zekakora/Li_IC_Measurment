@@ -1,6 +1,6 @@
 # 模型设置版块（模型选择和超参数设置）
 # 超参数存储值为窗口大小,输出长度, 均值,方差,模型选择
-from ic_getin import *
+from component.ic.ic_getin import *
 import numpy as np
 import math
 from math import sqrt

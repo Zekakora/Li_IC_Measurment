@@ -1,9 +1,8 @@
 import numpy as np
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
 
 
 def set_text(self, fname):
@@ -53,7 +52,7 @@ def plotcos(self):
     self.F.fig.suptitle("cos")
 
 
-from licon import Ui_MainWindow
+from garbage.licon import Ui_MainWindow
 
 if __name__ == "__main__":
     import sys

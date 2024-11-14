@@ -12,11 +12,10 @@ import sys
 
 from PyQt5.QtWidgets import QVBoxLayout
 
-import icons
+from src import icons
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
 
-from qt_material import apply_stylesheet
 import qdarkstyle
 from qdarkstyle.light.palette import LightPalette
 # create the application and the main window

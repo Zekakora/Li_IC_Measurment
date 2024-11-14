@@ -1,15 +1,13 @@
 #模型设置版块（模型选择和超参数设置）
 #超参数存储值为窗口大小,输出长度, 均值,方差,模型选择,标称容量,终止容量
 #这里引入ic_model.py中的一些可以共用的函数
-from ic_model import (setup_seed, txt_prepare, excel_prepare, txt_prepare_test,
-                      excel_prepare_test, ResNet, CNN, valiloss)
-from soh_getin import *
+from component.ic.ic_model import (setup_seed, txt_prepare, excel_prepare, txt_prepare_test,
+                                   excel_prepare_test, ResNet, CNN, valiloss)
 from sklearn.model_selection import train_test_split
 from math import sqrt
 import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
